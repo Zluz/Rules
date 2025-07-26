@@ -1,0 +1,13 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-device": "'${body.network-mac}' == '${RPi-GarageAutoHAT}'"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "event - GarageAutoHAT",
+			"expire": 999
+		}
+	}
+}

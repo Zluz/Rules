@@ -1,0 +1,27 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-device": "'${body.network-mac}' == '${RPi-GarageAutoHAT}'",
+		"check-sensor-type": "'${body.sensor_bank}' == 'analog'",
+		"check-sensor-index": "'${body.sensor_index}' == '0'",
+		"check-sensor-value": " ${body.value_current} > 2.00 ",
+		"check-sensor-noise": " ${body.value_stdev} < 0.04 "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - space occupied"
+		},
+		"02 - action-set-var home.garage": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.garage.vehicle-1-space",
+			"value": "occupied",
+			"add": {
+				"value_mean": "${body.value_mean}",
+				"value_stdev": "${body.value_stdev}"
+			}
+		}
+
+	}
+}

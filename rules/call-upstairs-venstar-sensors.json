@@ -1,0 +1,23 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"enabled": "false"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "event - call venstar sensors"
+		},
+        "call-venstar-up-sensors-endpoint": {
+			"type": "endpoint",
+			"_endpoint": "http://services:8147/get-test-data",
+			"endpoint": "http://192.168.6.81/query/sensors",
+            "method": "GET",
+            "headers": {
+                "cron.event.time": "${body.cron-event-time}",
+				"test-header-from-action": "${timestamp}"
+			}
+		}
+	}
+}
+

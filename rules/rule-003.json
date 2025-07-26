@@ -1,0 +1,14 @@
+{
+	"rule": "rule-003",
+	"conditions": {
+		"test-true": " 1 > 2 "
+	},
+	"actions": {
+		"action-01": { "type": "log", "message": "test message 003, time is ${timestamp}" },
+		"action-02": { 
+			"type": "set", 
+			"name": "rule-last-triggered",
+			"value": "${timestamp}"
+		}
+	}
+}

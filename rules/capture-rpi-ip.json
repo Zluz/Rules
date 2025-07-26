@@ -1,0 +1,19 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/status/rpi')"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "_RPi-Reference",
+			"path": "'$.${body.config-description}'.replace(':','')",
+			"value": "${body.network-ip}",
+			"add": {
+				"network-mac": "${body.network-mac}",
+				"cpu-model": "${body.cpu-model}",
+				"cpu-throttle": "${body.cpu-throttle}",
+				"soc-temperature": "${body.soc-temperature}"
+			}
+		}
+	}
+}

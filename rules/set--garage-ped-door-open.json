@@ -1,0 +1,22 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-device": "'${body.network-mac}' == '${RPi-ShopAutoHAT}'",
+		"check-sensor-type": "'${body.sensor_bank}' == 'digital'",
+		"check-sensor-index": "'${body.sensor_index}' == '0'",
+		"check-sensor-value": " ${body.value_new} == '0' "
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.garage.ped-door",
+			"value": "open"
+		},
+		"action-tag": { 
+			"type": "tag", 
+			"value": "gar ped door open",
+			"expire": 999
+		}
+	}
+}

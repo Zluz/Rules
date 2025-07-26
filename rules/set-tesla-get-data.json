@@ -1,0 +1,38 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type": "'${headers.calling_action}'.includes('call-tesla-get-data-0')",
+		"check-event-vehicle": "'${headers.calling_action_endpoint}'.includes('8115/get-data/0')"
+	},
+	"_conditions": {
+		"check-device-direct-1": " '${body.display_name}' === 'Nameless Midnight' "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - tesla data",
+			"expire": 99999
+		},
+		"02 - action-set-var tesla": { 
+			"type": "set", 
+			"name": "Vehicles",
+			"path": "$.Tesla_0",
+			"value": "${body.display_name}",
+			"add": {
+			    "battery_level": "${body.charge_state.battery_level}",
+			    "charge_port_latch": "${body.charge_state.charge_port_latch}",
+			    "charging_state": "${body.charge_state.charging_state}",
+			    "latitude": "${body.drive_state.latitude}",
+			    "longitude": "${body.drive_state.longitude}",
+			    "shift_state": "${body.drive_state.shift_state}",
+			    "speed": "${body.drive_state.speed}",
+			    "car_version": "${body.vehicle_state.car_version}",
+			    "odometer": "${body.vehicle_state.odometer}",
+			    "tpms_pressure_fl": "${body.vehicle_state.tpms_pressure_fl}",
+			    "tpms_pressure_fr": "${body.vehicle_state.tpms_pressure_fr}",
+			    "tpms_pressure_rl": "${body.vehicle_state.tpms_pressure_rl}",
+			    "tpms_pressure_rr": "${body.vehicle_state.tpms_pressure_rr}"
+			}
+		}
+	}
+}

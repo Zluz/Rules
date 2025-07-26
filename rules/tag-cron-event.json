@@ -1,0 +1,16 @@
+{
+	"conditions": {
+		"check-cron-event": " 'Hour Minute'.includes( '${body.cron-event}' ) ",
+		"check-cron-schedule": " '${body.cron-schedule}'.includes( '0' ) "
+	},
+	"_conditions": {
+		"check-cron-event": " [ 'Hour', 'Minute' ].includes( '${body.cron-event}' ) ",
+		"check-cron-schedule": " '${body.cron-schedule}'.includes( '*' ) "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "cron - ${body.cron-event}"
+		}
+	}
+}

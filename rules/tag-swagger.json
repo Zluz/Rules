@@ -1,0 +1,12 @@
+{
+	"conditions": {
+		"check-referer": "'${headers.referer}' == 'http://services:8147/docs'",
+		"check-origin": "'${headers.origin}' == 'http://services:8147'"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "swagger"
+		}
+	}
+}

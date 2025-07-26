@@ -1,0 +1,22 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-device": "'${body.network-mac}' == '${RPi-GarageAutoHAT}'",
+		"check-sensor-type": "'${body.sensor_bank}' == 'latch'",
+		"check-sensor-index": "'${body.sensor_index}' == '0'",
+		"check-sensor-value": " ${body.value_new} == '1' "
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.garage.latch-0",
+			"value": "1"
+		},
+		"action-tag": { 
+			"type": "tag", 
+			"value": "gar L-0 = 1",
+			"expire": 999
+		}
+	}
+}

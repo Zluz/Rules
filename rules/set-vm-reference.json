@@ -1,0 +1,18 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/status/vm')"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "_VM-Reference",
+			"path": "$.${body.vm-name}",
+			"value": "${body.vm-name}",
+			"add": {
+				"host-name": "${body.host-network-name}",
+				"host-ip": "${body.host-network-ip}",
+				"state": "${body.state}"
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"rule": "alert--server-ram",
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}' == '/status/server'",
+		"ram-value-present": "${body.memory-ram-percent} > 70"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "ALERT--server-${body.network-name}-ram-percent",
+			"value": "${body.memory-ram-percent}",
+			"add": {
+				"ram-percent": "${body.memory-ram-percent}",
+				"swap-percent": "${body.memory-swap-percent}"
+			}
+		}
+	}
+}

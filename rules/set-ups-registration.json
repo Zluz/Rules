@@ -1,0 +1,20 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/ups/registration')"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "UPS-Registration",
+			"path": "$.${body.ups-id}",
+			"value": "${body.ups-id}",
+			"add": {
+				"host-ip": "${body.host-ip}"
+			},
+			"_add": {
+				"time-label": "${body.time-label}",
+				"ups-serial": "${body.ups-serial}"
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/ups/registration')"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "ups/reg"
+		}
+	}
+}

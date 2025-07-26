@@ -1,0 +1,13 @@
+{
+	"rule": "rule-001",
+	"conditions": {
+		"test-true,math-eval": "3 > 2",
+		"test-true,literal": "true",
+		"timestamp expression": " ${timestamp} > 100 ",
+		"event: swagger": "\"${event-type}\" == \"swagger input\"",
+		"event: sensor":  "\"${event-type}\" == \"sensor input\""
+	},
+	"actions": {
+		"action-01": { "type": "log", "message": "test message" }
+	}
+}

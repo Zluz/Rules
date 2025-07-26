@@ -1,0 +1,9 @@
+{
+	"rule": "rule-002",
+	"conditions": {
+		"test-false": " 3 > 8 "
+	},
+	"actions": {
+		"action-01": { "type": "log", "message": "test message 002" }
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "event/sensor",
+			"expire": 9999
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"disable-rule": "false"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "event - minute ping"
+		},
+        "call-ping-endpoint": {
+			"type": "endpoint",
+            "_url": "http://services:8147/ping",
+            "endpoint": "8147/ping",
+            "method": "GET",
+            "headers": {
+                "cron.event.time": "${body.cron-event-time}"
+			}
+		}
+	}
+}

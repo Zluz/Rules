@@ -1,0 +1,17 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-sensor-type": "'${body.sensor_bank}' == 'digital'"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "Sensors",
+			"path": "$.${body.key}",
+			"value": "${body.value_new}",
+			"add": {
+				"value_new": "${body.value_new}"
+			}
+		}
+	}
+}

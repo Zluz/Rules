@@ -1,0 +1,19 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",		
+		"check-sensor-type": "'${body.sensor_bank}' == 'analog'"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "Sensors",
+			"path": "$.${body.key}",
+			"value": "${body.value_current}",
+			"add": {
+				"value_current": "${body.value_current}",
+				"value_mean": "${body.value_mean}",
+				"value_stdev": "${body.value_stdev}"
+			}
+		}
+	}
+}

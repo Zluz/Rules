@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy_job:
+  stage: deploy
+  script:
+    - rsync -av --progress --no-perms --no-owner --no-group --omit-dir-times rules/ /Shares/KM-Share/S23-Projects/rules
+  tags:
+    - share-deploy
+  rules:
+    - when: always

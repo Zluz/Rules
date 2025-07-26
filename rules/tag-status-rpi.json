@@ -1,0 +1,15 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/status/rpi')"
+	},
+	"_conditions": {
+		"doc": "this conditional seems to fail..",
+		"check-event-type": "'/status/rpi/'.contains( '${headers.uri-path}' )"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "status/rpi"
+		}
+	}
+}

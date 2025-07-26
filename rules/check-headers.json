@@ -1,0 +1,18 @@
+{
+	"rule": "check-headers",
+	"conditions": {
+		"random-test-01": "'${headers.host}' == 'services:8147'",
+		"random-test-02": "'application/json' == '${headers.content-type}'",
+		"random-test-03": "'${headers.referer}' == 'http://services:8147/docs'",
+		"random-test-04": "'http://services:8147' == '${headers.origin}'",
+		"random-test-05": "'swagger input' == '${body.event-type}'",
+		"random-test-06": "'${body.hardcoded}' == 'fixed-value'"
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "check-headers--referer",
+			"value": "${headers.referer}"
+		}
+	}
+}

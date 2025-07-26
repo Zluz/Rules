@@ -1,0 +1,21 @@
+{
+	"conditions": {
+		"check-event-type": "'${headers.uri-path}'.includes('/event/sensor')",
+		"check-device": "'${body.network-mac}' == '${RPi-GarageAutoHAT}'",
+		"check-sensor-type": "'${body.sensor_bank}' == 'digital'",
+		"check-sensor-index": "'${body.sensor_index}' == '2'",
+		"check-sensor-value": " ${body.value_new} == '0' "
+	},
+	"actions": {
+		"action-set-var": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.garage.vehicle-1-door.fully-open",
+			"value": "false"
+		},
+		"action-tag": { 
+			"type": "tag", 
+			"value": "gar veh-1 door state"
+		}
+	}
+}
