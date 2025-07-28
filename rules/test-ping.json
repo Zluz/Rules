@@ -10,8 +10,7 @@
 		},
         "call-ping-endpoint": {
 			"type": "endpoint",
-            "_url": "http://services:8147/ping",
-            "endpoint": "8147/ping",
+            "endpoint": "${rule-proc-url-base}/ping",
             "method": "GET",
             "headers": {
                 "cron.event.time": "${body.cron-event-time}"

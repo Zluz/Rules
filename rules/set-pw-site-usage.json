@@ -1,0 +1,30 @@
+{
+	"debug": false,
+    "vars": {},
+	"conditions": {
+		"check-event-type": "'${headers.event-type}'.includes('Powerwall measurement')",
+		"check-event-source": "'${headers.user-agent}'.includes('Telegraf')",
+		"check-array-item": "'${headers.reprocess_key}'.includes('split-bulk-array')",
+		"check-measurement-type": "'${body.name}' === 'http'",
+		"check-measurement-detail": "${body.fields.load_instant_power} < 999999 ",
+		"enabled": "true"
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - PW (batt pct)",
+			"expire": 0
+		},
+		"02 - action-set-var home.upstairs": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.batteries.${headers.powerwall}.site",
+			"value": "${headers.powerwall}",
+			"add": {
+			    "site_instant_power": "${body.fields.site_instant_power}",
+			    "load_instant_power": "${body.fields.load_instant_power}",
+			    "solar_instant_power": "${body.fields.solar_instant_power}"			}
+		}
+	}
+}
+

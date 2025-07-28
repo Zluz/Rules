@@ -1,0 +1,28 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-time": " /T19|T20|T21/.test( '${body.cron-event-time}' ) ",
+        "check-tesla-near-veh-1-space": " ${Vehicles.Tesla_0.distance_to_home} < 0.005 ",
+        "check-tesla-not-plugged-in": " '${Vehicles.Tesla_0.charge_state.charge_port_latch}' !== 'Engaged' ",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T19|T20/T21/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "alert - tesla not plugged-in",
+            "expire": 99999
+		},
+		"action-set-var": { 
+			"type": "set", 
+			"name": "ALERT--Tesla is not plugged in",
+			"value": "TODO: add email action.."
+		}
+	}
+
+}

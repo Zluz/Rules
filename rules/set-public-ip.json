@@ -1,0 +1,20 @@
+{
+	"debug": false,
+	"conditions": {
+        "check-event-type": " '${headers.calling_action}'.includes( 'call-get-public-ip' ) ",
+		"check-valid-ip": " '${body.public_ip}'.includes( '151.' ) ",
+		"check-updated-ip": " '${body.public_ip}' !== '${Home.network.public-ip.value}' "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - changed public IP address"
+		},
+		"02 - action-set-var home.upstairs": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.network.public-ip",
+			"value": "${body.public_ip}"
+		}
+	}
+}

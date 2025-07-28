@@ -1,0 +1,67 @@
+{
+	"debug": true,
+	"_vars": {
+		"time-now": " '${body.cron-event-time}'.slice( 11, 16 ).replace( ':', '' ) ",
+		"time-wake": " ${Calendar.day-of-week.is-weekend} ? ${time-wake-weekend}. : ${time-wake-weekday}. ",
+		"time-sleep": " ${Calendar.day-of-week.is-weekend} ? ${time-sleep-weekend}. : ${time-sleep-weekday}. ",
+		"sleeping": " ${time-now}. < ${time-wake} || ${time-sleep} < ${time-now}. ",
+		"away": " ${Vehicles.Tesla_0.distance_to_home} > 10 ",
+		"target-cooltemp": " ${away} ? ${target-temp-upstairs-away-cooltemp} : ${sleeping} ? ${target-temp-upstairs-sleep-cooltemp} : ${target-temp-upstairs-active-cooltemp} ",
+		"target-heattemp": " ${away} ? ${target-temp-upstairs-away-heattemp} : ${sleeping} ? ${target-temp-upstairs-sleep-heattemp} : ${target-temp-upstairs-active-heattemp} ",
+		"target-description": " ${away} ? 'away' : ${sleeping} ? 'sleeping' : 'active' "
+    },
+	"_vars_2": {
+		"time-now": " '${body.cron-event-time}'.slice( 11, 16 ).replace( ':', '' ).replace( /^0+/, '' ) ",
+		"time-wake-weekend-safe": " '${time-wake-weekend}'.replace( /^0+/, '' ) ",
+		"time-wake-weekday-safe": " '${time-wake-weekday}'.replace( /^0+/, '' ) ",
+		"time-wake": " ${Calendar.day-of-week.is-weekend} ? ${time-wake-weekend-safe} : ${time-wake-weekday-safe} ",
+		"time-sleep-weekend-safe": " '${time-sleep-weekend}'.replace( /^0+/, '' ) ",
+		"time-sleep-weekday-safe": " '${time-sleep-weekday}'.replace( /^0+/, '' ) ",
+		"time-sleep": " ${Calendar.day-of-week.is-weekend} ? ${time-sleep-weekend-safe} : ${time-sleep-weekday-safe} ",
+		"sleeping": " ${time-now} < ${time-wake} || ${time-sleep} < ${time-now} ",
+		"away": " ${Vehicles.Tesla_0.distance_to_home} > 10 ",
+		"target-cooltemp": " ${away} ? ${target-temp-upstairs-away-cooltemp} : ${sleeping} ? ${target-temp-upstairs-sleep-cooltemp} : ${target-temp-upstairs-active-cooltemp} ",
+		"target-heattemp": " ${away} ? ${target-temp-upstairs-away-heattemp} : ${sleeping} ? ${target-temp-upstairs-sleep-heattemp} : ${target-temp-upstairs-active-heattemp} ",
+		"target-description": " ${away} ? 'away' : ${sleeping} ? 'sleeping' : 'active' "
+    },
+	"conditions": {
+		"enabled": true,
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"description-resolved": " ! '${target-description}'.includes('description') ",
+		"check-not-already-set": " '${Home.upstairs.temperature-range.value}' !== '${target-description}' "
+	},
+	"_conditions": {
+		"check-event-type_": "'${Home.upstairs.temperature-range.value}'.includes('call-venstar-up-sensors-endpoint')",
+		"check-event-ip": "'${headers.calling_action_endpoint}'.includes('${venstar-up-url-base}')",
+		"check-device-direct-1": " '${body.sensors.0.name}' === 'Thermostat' ",
+		"check-sensor-value-1": " ${body.sensors.0.temp} > 0 ",
+		"check-device-stringify": "JSON.stringify('${body.sensors[0]}').includes('Thermostat')",
+		"test-first-level": " '${body.first-level.title}' === 'title-value' ",
+		"test-second-level": " '${body.first-level.second.subtitle}' === 'sub-value' ",
+		"check-sensor-value-0": " ${body.sensors[0].temp} > 0 ",
+		"check-device-direct-0": " '${body.sensors[0].name}' === 'Thermostat' ",
+		"check-device_01": "'${body.sensors[0].name}' == 'Thermostat'",
+		"appears-as-(object Object_)": "JSON.stringify('${body.sensors}').includes('Thermostat')",
+		"this-expr-does-not-replace ": "JSON.stringify('${body.sensors[0]}').includes('Thermostat')",
+		"check-sensor-value": " ${body.sensors[0].temp} > 0 "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"_type": "tag", 
+			"value": "set - target temp range"
+		},
+		"02 - action-set-var home.upstairs": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.upstairs.temperature-range",
+			"value": "${target-description}",
+			"add": {
+			    "cooltemp": "${target-cooltemp}",
+			    "heattemp": "${target-heattemp}",
+			    "time-now": "${time-now}",
+			    "sleeping": "${sleeping}",
+			    "away": "${away}"
+			}
+		}
+	}
+}

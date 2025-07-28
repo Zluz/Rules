@@ -2,7 +2,7 @@
 	"debug": true,
 	"conditions": {
 		"check-event-type": "'${headers.calling_action}'.includes('call-venstar-up-sensors-endpoint')",
-		"check-event-ip": "'${headers.calling_action_endpoint}'.includes('192.168.6.81')",
+		"check-event-ip": "'${headers.calling_action_endpoint}'.includes('${venstar-up-url-base}')",
 		"check-device-direct-1": " '${body.sensors.0.name}' === 'Thermostat' ",
 		"check-sensor-value-1": " ${body.sensors.0.temp} > 0 "
 	},

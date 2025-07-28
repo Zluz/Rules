@@ -1,5 +1,5 @@
 {
-	"debug": false,
+	"debug": true,
 	"conditions": {
 		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
 		"enabled": true
@@ -12,11 +12,11 @@
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "call tesla get-data"
+			"value": "call get-public-ip"
 		},
-        "call-tesla-get-data-0": {
+        "call-get-public-ip": {
 			"type": "endpoint",
-			"endpoint": "${tesla-api-url-base}/get-data/0",
+			"endpoint": "${tesla-api-url-base}/get-public-ip",
             "method": "GET",
             "headers": {
 				"cron.event.time": "${body.cron-event-time}",

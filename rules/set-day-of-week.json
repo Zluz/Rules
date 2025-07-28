@@ -1,0 +1,41 @@
+{
+	"debug": false,
+	"vars": {
+		"is-weekday": " ${body.cron-event-day-of-week} > 5 "
+	},
+	"conditions": {
+		"check-event-type-day": "'${body.cron-event}' === 'Day'",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "set day-of-week"
+		},
+		"02 - action-set-var day-of-week": { 
+			"type": "set", 
+			"name": "Calendar",
+			"path": "$.day-of-week",
+			"value": "${body.cron-event-day-of-week}",
+			"add": {
+			    "day-text": "${body.cron-event-day-of-week-text}",
+			    "day-num": "${body.cron-event-day-of-week}",
+				"is-weekend": "${is-weekday}"
+			}
+		},
+		"03 - action-set-var day-of-month": { 
+			"type": "set", 
+			"name": "Calendar",
+			"path": "$.day-of-month",
+			"value": "${body.cron-event-day-of-month}",
+			"add": {
+			    "date-num": "${body.cron-event-day-of-month}"
+			}
+		}
+	}
+}

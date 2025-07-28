@@ -1,0 +1,19 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type": "'${headers.event-type}'.includes('Powerwall bulk metrics')",
+		"check-event-source": "'${headers.user-agent}'.includes('Telegraf')",
+		"enabled": "true"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "powerwall bulk metrics",
+			"expire": -1
+		},
+        "split-bulk-array": {
+			"type": "reprocess-array",
+			"path": "body.metrics"
+		}
+	}
+}

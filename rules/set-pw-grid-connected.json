@@ -1,0 +1,25 @@
+{
+	"debug": false,
+    "vars": {},
+	"conditions": {
+		"check-event-type": "'${headers.event-type}'.includes('Powerwall measurement')",
+		"check-event-source": "'${headers.user-agent}'.includes('Telegraf')",
+		"check-array-item": "'${headers.reprocess_key}'.includes('split-bulk-array')",
+		"check-measurement-type": "'${body.name}' === 'alerts'",
+		"check-measurement-detail": "${body.fields.SystemConnectedToGrid} > -1 ",
+		"enabled": "true"
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - PW (grid-conn)",
+			"expire": -1
+		},
+		"02 - action-set-var home.upstairs": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.batteries.${headers.powerwall}.grid-connected",
+			"value": "${body.fields.SystemConnectedToGrid}"
+		}
+	}
+}

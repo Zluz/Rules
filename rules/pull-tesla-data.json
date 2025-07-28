@@ -1,17 +1,18 @@
 {
 	"conditions": {
 		"check-event-type": "'${body.cron.event}' === 'Hour'",
-		"disable": "false"
+		"enabled": "true"
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
 			"value": "event - tesla data",
-			"expire": 9999
+			"_expire": 9999
 		},
         "pull-tesla-data": {
 			"type": "endpoint",
-            "endpoint": "8115/get-data/0",
+            "_endpoint": "8115/get-data/0",
+            "endpoint": "${tesla-api-url-base}/get-data/0",
             "body": "",
             "method": "GET",
             "headers": {
