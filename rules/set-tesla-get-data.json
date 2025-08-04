@@ -96,7 +96,6 @@
 				"battery_level": "${body.charge_state.battery_level}",
 				"battery_range": "${body.charge_state.battery_range}",
 				"est_battery_range": "${body.charge_state.est_battery_range}",
-				"charge_port_latch": "${body.charge_state.charge_port_latch}",
 				"charging_state": "${body.charge_state.charging_state}"
 			}
 		},

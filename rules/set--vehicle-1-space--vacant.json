@@ -10,7 +10,8 @@
 	"actions": {
 		"01 - action-tag": { 
 			"type": "tag", 
-			"value": "set - space vacant"
+			"value": "set - space vacant",
+			"expire": 99999
 		},
 		"02 - action-set-var home.garage": { 
 			"type": "set", 

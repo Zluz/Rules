@@ -1,15 +1,15 @@
 {
 	"debug": true,
-	"_vars": {
+	"vars": {
 		"time-now": " '${body.cron-event-time}'.slice( 11, 16 ).replace( ':', '' ) ",
-		"time-wake": " ${Calendar.day-of-week.is-weekend} ? ${time-wake-weekend}. : ${time-wake-weekday}. ",
-		"time-sleep": " ${Calendar.day-of-week.is-weekend} ? ${time-sleep-weekend}. : ${time-sleep-weekday}. ",
-		"sleeping": " ${time-now}. < ${time-wake} || ${time-sleep} < ${time-now}. ",
+		"time-wake": " ${Calendar.day-of-week.is-weekend} ? '${time-wake-weekend}' : '${time-wake-weekday}' ",
+		"time-sleep": " ${Calendar.day-of-week.is-weekend} ? '${time-sleep-weekend}' : '${time-sleep-weekday}' ",
+		"sleeping": " ${time-now} < ${time-wake} || ${time-sleep} < ${time-now} ",
 		"away": " ${Vehicles.Tesla_0.distance_to_home} > 10 ",
 		"target-cooltemp": " ${away} ? ${target-temp-upstairs-away-cooltemp} : ${sleeping} ? ${target-temp-upstairs-sleep-cooltemp} : ${target-temp-upstairs-active-cooltemp} ",
 		"target-heattemp": " ${away} ? ${target-temp-upstairs-away-heattemp} : ${sleeping} ? ${target-temp-upstairs-sleep-heattemp} : ${target-temp-upstairs-active-heattemp} ",
 		"target-description": " ${away} ? 'away' : ${sleeping} ? 'sleeping' : 'active' "
-    },
+	},
 	"_vars_2": {
 		"time-now": " '${body.cron-event-time}'.slice( 11, 16 ).replace( ':', '' ).replace( /^0+/, '' ) ",
 		"time-wake-weekend-safe": " '${time-wake-weekend}'.replace( /^0+/, '' ) ",
@@ -23,7 +23,7 @@
 		"target-cooltemp": " ${away} ? ${target-temp-upstairs-away-cooltemp} : ${sleeping} ? ${target-temp-upstairs-sleep-cooltemp} : ${target-temp-upstairs-active-cooltemp} ",
 		"target-heattemp": " ${away} ? ${target-temp-upstairs-away-heattemp} : ${sleeping} ? ${target-temp-upstairs-sleep-heattemp} : ${target-temp-upstairs-active-heattemp} ",
 		"target-description": " ${away} ? 'away' : ${sleeping} ? 'sleeping' : 'active' "
-    },
+	},
 	"conditions": {
 		"enabled": true,
 		"check-event-type": "'${body.cron-event}' === 'Minute'",
@@ -56,11 +56,11 @@
 			"path": "$.upstairs.temperature-range",
 			"value": "${target-description}",
 			"add": {
-			    "cooltemp": "${target-cooltemp}",
-			    "heattemp": "${target-heattemp}",
-			    "time-now": "${time-now}",
-			    "sleeping": "${sleeping}",
-			    "away": "${away}"
+				"cooltemp": "${target-cooltemp}",
+				"heattemp": "${target-heattemp}",
+				"time-now": "${time-now}",
+				"sleeping": "${sleeping}",
+				"away": "${away}"
 			}
 		}
 	}
