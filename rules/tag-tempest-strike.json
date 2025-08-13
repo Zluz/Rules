@@ -1,0 +1,24 @@
+{
+	"conditions": {
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
+		"check-event-type": " '${body.type}' === 'evt_strike' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "tempest - strike",
+			"expire": 99999
+		},
+		"action-set-var weather": { 
+			"type": "set", 
+			"name": "Weather",
+			"path": "$.tempest.strike",
+			"value": "${body.type}",
+			"add": {
+				"timestamp": "${body.evt.0}",
+				"distance": "${body.evt.1}",
+				"energy": "${body.evt.2}"
+			}
+		}
+	}
+}

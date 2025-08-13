@@ -1,0 +1,13 @@
+{
+	"conditions": {
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
+		"check-event-type": " '${body.type}' === 'rapid_wind' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "tempest - wind",
+			"_expire": 99999
+		}
+	}
+}

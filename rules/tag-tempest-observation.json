@@ -1,0 +1,54 @@
+{
+	"debug": true,
+	"vars": {
+		"voltage_percent_unbound": " ( ( ${body.obs.0.16} - 2.3 ) / ( 2.775 - 2.3 ) ) * 100 ",
+		"precip_type": "${body.obs.0.13}",
+		"precip_type_text": " ( ${precip_type} == 2 ) ? 'Hail' : ( ${precip_type} == 1 ) ? 'Rain' : 'None'",
+		"air_temperature_f": " ${body.obs.0.7} * 9/5 + 32 "
+	},
+	"conditions": {
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
+		"check-event-type": " '${body.type}' === 'obs_st' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "tempest - observation",
+			"_expire": 99999
+		},
+		"action-set-var weather": { 
+			"type": "set", 
+			"name": "Weather",
+			"path": "$.tempest.observation",
+			"value": "${body.obs.0.16}",
+			"add": {
+				"timestamp": "${body.obs.0.0}",
+				"wind_lull": "${body.obs.0.1}",
+				"wind_avg": "${body.obs.0.2}",
+				"wind_gust": "${body.obs.0.3}",
+				"wind_direction": "${body.obs.0.4}",
+				"wind_sample_interval": "${body.obs.0.5}",
+				"station_pressure": "${body.obs.0.6}",
+				"air_temperature_c": "${body.obs.0.7}",
+				"relative_humidity": "${body.obs.0.8}",
+				"illuminance": "${body.obs.0.9}",
+				"uv_index": "${body.obs.0.10}",
+				"solar_radiation": "${body.obs.0.11}",
+				"rain_amount": "${body.obs.0.12}",
+				"precip_type_index": "${precip_type}",
+				"precip_type_text": "${precip_type_text}",
+				"lightning_strike_avg_dist": "${body.obs.0.14}",
+				"lightning_strike_count": "${body.obs.0.15}",
+				"voltage": "${body.obs.0.16}",
+				"report_interval": "${body.obs.0.17}",
+				"firmware_revision": "${body.firmware_revision}",
+				"voltage_percent_unbound": "${voltage_percent_unbound}",
+				"air_temperature_f": "${air_temperature_f}"
+			},
+			"_add": {
+				"solar_radiation_corrected": "${body.obs.0.18}"
+			}
+		}
+	}
+}
+

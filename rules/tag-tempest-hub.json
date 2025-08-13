@@ -1,0 +1,13 @@
+{
+	"conditions": {
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-hub-serial}' ",
+		"check-event-type": " '${body.type}' === 'hub_status' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "tempest - hub"
+		}
+	}
+}
+

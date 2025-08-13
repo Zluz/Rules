@@ -1,0 +1,13 @@
+{
+	"conditions": {
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
+		"check-event-type": " '${body.type}' === 'evt_precip' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "tempest - precip",
+			"_expire": 99999
+		}
+	}
+}
