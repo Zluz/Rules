@@ -14,14 +14,18 @@
 			"type": "tag", 
 			"value": "call tesla get-data"
 		},
-        "call-tesla-get-data-0": {
+		"call-tesla-get-data-0": {
 			"type": "endpoint",
 			"endpoint": "${tesla-api-url-base}/get-data/0",
-            "method": "GET",
-            "headers": {
-				"cron.event.time": "${body.cron-event-time}",
-				"test-header-from-action": "${timestamp}"
+			"method": "GET",
+			"headers": {
+				"cron-event.time": "${body.cron-event-time}",
+				"test-header-from-action": "${timestamp}",
+				"usr": "${tesla-usr}"
 			}
+		},
+		"rule-filter": {
+			"match": ""
 		}
 	}
 }

@@ -1,13 +1,22 @@
 {
+	"debug": true,
 	"conditions": {
 		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
-		"check-event-type": " '${body.type}' === 'evt_precip' "
+		"check-event-type": " '${body.type}' === 'obs_st' "
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "tempest - precip",
+			"value": "tempest - observation",
 			"_expire": 99999
+		},
+		"add label: tempest": {
+			"type": "add-label",
+			"label": "tempest"
+		},
+		"add label: observation": {
+			"type": "add-label",
+			"label": "observation"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

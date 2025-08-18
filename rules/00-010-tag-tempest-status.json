@@ -1,13 +1,21 @@
 {
 	"conditions": {
 		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
-		"check-event-type": " '${body.type}' === 'evt_precip' "
+        "check-event-type": " '${body.type}' === 'device_status' "
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "tempest - precip",
+			"value": "tempest - status",
 			"_expire": 99999
+		},
+		"add label: tempest": {
+			"type": "add-label",
+			"label": "tempest"
+		},
+		"add label: test-label": {
+			"type": "add-label",
+			"label": "test-label"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

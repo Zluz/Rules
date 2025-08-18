@@ -1,0 +1,17 @@
+{
+	"conditions": {
+		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
+		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - tesla data",
+			"expire": 999999
+		},
+		"add label: tesla-vehicle": {
+			"type": "add-label",
+			"label": "tesla-vehicle"
+		}
+	}
+}

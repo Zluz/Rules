@@ -4,10 +4,12 @@
 		"check-event-type": " '${body.type}' === 'rapid_wind' "
 	},
 	"actions": {
-		"action-tag": { 
-			"type": "tag", 
-			"value": "tempest - wind",
-			"_expire": 99999
+		"set tempest wind": {
+			"type": "//TODO add this"
+		},
+		"filter: only tempest": {
+			"type": "rule-filter",
+			"match": ".*tempest.*"
 		}
 	}
 }

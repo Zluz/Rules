@@ -1,5 +1,4 @@
 {
-	"debug": true,
 	"vars": {
 		"voltage_percent_unbound": " ( ( ${body.obs.0.16} - 2.3 ) / ( 2.775 - 2.3 ) ) * 100 ",
 		"precip_type": "${body.obs.0.13}",
@@ -11,11 +10,6 @@
 		"check-event-type": " '${body.type}' === 'obs_st' "
 	},
 	"actions": {
-		"action-tag": { 
-			"type": "tag", 
-			"value": "tempest - observation",
-			"_expire": 99999
-		},
 		"action-set-var weather": { 
 			"type": "set", 
 			"name": "Weather",
@@ -51,4 +45,3 @@
 		}
 	}
 }
-

@@ -1,0 +1,15 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'"
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "cron - minute"
+		},
+		"add label: cron-minute": {
+			"type": "add-label",
+			"label": "cron-minute"
+		}
+	}
+}

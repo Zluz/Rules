@@ -1,7 +1,11 @@
 {
 	"conditions": {
-		"check-event-type": "'${body.cron.event}' === 'Hour'",
-		"enabled": "true"
+		"check-event-type": "'${body.cron-event}' === 'Hour'",
+		"enabled": "false"
+	},
+	"_conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"enabled": "false"
 	},
 	"actions": {
 		"action-tag": { 
@@ -9,15 +13,17 @@
 			"value": "event - tesla data",
 			"_expire": 9999
 		},
-        "pull-tesla-data": {
+		"pull-tesla-data": {
 			"type": "endpoint",
-            "_endpoint": "8115/get-data/0",
-            "endpoint": "${tesla-api-url-base}/get-data/0",
-            "body": "",
-            "method": "GET",
-            "headers": {
-                "cron.event": "Hour",
-                "cron.event.time": "${body.cron.event.time}"
+			"_endpoint": "8115/get-data/0",
+			"endpoint": "${tesla-api-url-base}/get-data/0",
+			"body": "",
+			"method": "GET",
+			"headers": {
+				"cron-event": "${body.cron-event}",
+				"cron-event.time": "${body.cron-event.time}",
+				"usr": "${tesla-usr}",
+				"test-header": "abc123"
 			}
 		}
 	}

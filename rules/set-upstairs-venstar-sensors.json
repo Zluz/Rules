@@ -22,15 +22,27 @@
 			"type": "tag", 
 			"value": "set - venstar sensors"
 		},
-		"02 - action-set-var home.upstairs": { 
+		"02 - action-set-var home.upstairs.sensors.thermostat": { 
 			"type": "set", 
 			"name": "Home",
-			"path": "$.upstairs.thermostat",
+			"path": "$.upstairs.sensors.thermostat",
 			"value": "${body.sensors.0.temp}",
 			"add": {
-			    "name": "${body.sensors.0.name}",
-			    "temp": "${body.sensors.0.temp}",
-			    "hum": "${body.sensors.0.hum}"
+				"name": "${body.sensors.0.name}",
+				"temp": "${body.sensors.0.temp}",
+				"hum": "${body.sensors.0.hum}"
+			}
+		},
+		"03 - action-set-var home.upstairs.sensors.sensor-01": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.upstairs.sensors.sensor-01",
+			"value": "${body.sensors.2.temp}",
+			"add": {
+				"name": "${body.sensors.2.name}",
+				"temp": "${body.sensors.2.temp}",
+				"type": "${body.sensors.2.type}",
+				"battery": "${body.sensors.2.battery}"
 			}
 		}
 	}

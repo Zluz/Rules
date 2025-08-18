@@ -1,5 +1,6 @@
 {
 	"debug": true,
+	"labels": [ "tesla-vehicle" ],
 	"vars": {
 		"distance_to_home": " Math.sqrt( Math.pow( 111.1 * ( ${home-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${home-longitude} - ${body.drive_state.longitude} ), 2) ) ",
 		"distance_to_work": " Math.sqrt( Math.pow( 111.1 * ( ${work-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${work-longitude} - ${body.drive_state.longitude} ), 2) ) ",
@@ -117,3 +118,4 @@
 		}	
 	}
 }
+

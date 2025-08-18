@@ -1,5 +1,6 @@
 {
 	"debug": true,
+	"labels": [ "cron-minute", "minute" ],
 	"vars": {
 		"time-now": " '${body.cron-event-time}'.slice( 11, 16 ).replace( ':', '' ) ",
 		"time-wake": " ${Calendar.day-of-week.is-weekend} ? '${time-wake-weekend}' : '${time-wake-weekday}' ",

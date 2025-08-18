@@ -7,7 +7,14 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "tempest - hub"
+		},
+		"add label: tempest": {
+			"type": "add-label",
+			"label": "tempest"
+		},
+		"filter: only tempest": {
+			"type": "rule-filter",
+			"match": ".*tempest.*"
 		}
 	}
 }
-
