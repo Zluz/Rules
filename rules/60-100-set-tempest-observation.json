@@ -10,6 +10,35 @@
 		"check-event-type": " '${body.type}' === 'obs_st' "
 	},
 	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "set - tempest observation",
+			"expire": 1
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "tempest_observation",
+			"tags": {
+				"device": "tempest-01"
+			},
+			"fields": {
+				"wind_lull": "${body.obs.0.1}",
+				"wind_avg": "${body.obs.0.2}",
+				"wind_gust": "${body.obs.0.3}",
+				"wind_direction": "${body.obs.0.4}",
+				"station_pressure": "${body.obs.0.6}",
+				"air_temperature_c": "${body.obs.0.7}",
+				"relative_humidity": "${body.obs.0.8}",
+				"illuminance": "${body.obs.0.9}",
+				"uv_index": "${body.obs.0.10}",
+				"solar_radiation": "${body.obs.0.11}",
+				"rain_amount": "${body.obs.0.12}",
+				"voltage": "${body.obs.0.16}",
+				"voltage_percent_unbound": "${voltage_percent_unbound}",
+				"air_temperature_f": "${air_temperature_f}"	
+			}
+		},
 		"action-set-var weather": { 
 			"type": "set", 
 			"name": "Weather",

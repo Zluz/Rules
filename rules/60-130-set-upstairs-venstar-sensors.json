@@ -1,8 +1,6 @@
 {
-	"debug": false,
-	"labels": [ "never-run", "replaced by 60-130-.." ],
+	"debug": true,
 	"conditions": {
-		"enabled": "false",
 		"check-event-type": "'${headers.calling_action}'.includes('call-venstar-up-sensors-endpoint')",
 		"check-event-ip": "'${headers.calling_action_endpoint}'.includes('${venstar-up-url-base}')",
 		"check-device-direct-1": " '${body.sensors.0.name}' === 'Thermostat' ",
@@ -45,6 +43,23 @@
 				"temp": "${body.sensors.2.temp}",
 				"type": "${body.sensors.2.type}",
 				"battery": "${body.sensors.2.battery}"
+			}
+		},
+		"post to influx - thermostat": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "venstar_up_0_host",
+			"fields": {
+				"temp": "${body.sensors.0.temp}",
+				"hum": "${body.sensors.0.hum}"
+			}
+		},
+		"post to influx - sensor 2": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "venstar_up_2_sensor",
+			"fields": {
+				"temp": "${body.sensors.2.temp}"
 			}
 		}
 	}

@@ -1,0 +1,47 @@
+{
+	"debug": true,
+	"labels": [ "tesla-vehicle" ],
+	"vars": {
+		"outside_temperature_f": " ${body.climate_state.outside_temp} * 9/5 + 32 ",
+		"inside_temperature_f": " ${body.climate_state.inside_temp} * 9/5 + 32 "
+	},
+	"conditions": {
+		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
+		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
+		"valid_outside_temp": " ${body.climate_state.outside_temp} > -999.0 ",
+		"valid_inside_temp": " ${body.climate_state.inside_temp} > -999.0 "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "set - tesla data - temperatures",
+			"expire": 999999
+		},
+		"action-set-var tesla temperatures": { 
+			"type": "set", 
+			"name": "Vehicles",
+			"path": "$.Tesla_0.temperatures",
+			"value": "${body.display_name}",
+			"add": {
+				"outside_temperature_c": "${body.climate_state.outside_temp}",
+				"inside_temperature_c": "${body.climate_state.inside_temp}",
+				"outside_temperature_f": "${outside_temperature_f}",
+				"inside_temperature_f": "${inside_temperature_f}"
+			}
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "vehicles",
+			"measurement": "temperatures",
+			"tags": {
+				"vehicle": "tesla_0"
+			},
+			"fields": {
+				"outside_temperature_c": "${body.climate_state.outside_temp}",
+				"inside_temperature_c": "${body.climate_state.inside_temp}",
+				"outside_temperature_f": "${outside_temperature_f}",
+				"inside_temperature_f": "${inside_temperature_f}"
+			}
+		}
+	}
+}

@@ -3,7 +3,9 @@
 	"labels": [ "tesla-vehicle" ],
 	"vars": {
 		"distance_to_home": " Math.sqrt( Math.pow( 111.1 * ( ${home-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${home-longitude} - ${body.drive_state.longitude} ), 2) ) ",
-		"distance_to_work": " Math.sqrt( Math.pow( 111.1 * ( ${work-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${work-longitude} - ${body.drive_state.longitude} ), 2) ) ",
+		"distance_to_work": " Math.sqrt( Math.pow( 111.1 * ( ${work-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${work-longitude} - ${body.drive_state.longitude} ), 2) ) "
+	},
+	"vars_removed": {
 		"psi_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl}",
 		"psi_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr}",
 		"psi_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl}",
@@ -43,36 +45,6 @@
 				"software_update_status": "${body.vehicle_state.software_update.status}",
 				"distance_to_home": "${distance_to_home}",
 				"distance_to_work": "${distance_to_work}"
-			}
-		},
-		"action-set-var tesla tires": { 
-			"type": "set", 
-			"name": "Vehicles",
-			"path": "$.Tesla_0.tires",
-			"value": "${body.display_name}",
-			"add": {
-				"pressure_bar_front_left": "${body.vehicle_state.tpms_pressure_fl}",
-				"pressure_bar_front_right": "${body.vehicle_state.tpms_pressure_fr}",
-				"pressure_bar_rear_left": "${body.vehicle_state.tpms_pressure_rl}",
-				"pressure_bar_rear_right": "${body.vehicle_state.tpms_pressure_rr}",
-				"pressure_psi_front_left": "${psi_pressure_front_left}",
-				"pressure_psi_front_right": "${psi_pressure_front_right}",
-				"pressure_psi_rear_left": "${psi_pressure_rear_left}",
-				"pressure_psi_rear_right": "${psi_pressure_rear_right}",
-
-				"pressure_percent_front_left": "${percent_pressure_front_left}",
-				"pressure_percent_front_right": "${percent_pressure_front_right}",
-				"pressure_percent_rear_left": "${percent_pressure_rear_left}",
-				"pressure_percent_rear_right": "${percent_pressure_rear_right}",
-				"pressure_psi_target_front": "${target-tire-pressure-front}",
-				"pressure_psi_target_rear": "${target-tire-pressure-rear}",
-
-				"pressure_percent_of_max_front_left": "${percent_of_max_pressure_front_left}",
-				"pressure_percent_of_max_front_right": "${percent_of_max_pressure_front_right}",
-				"pressure_percent_of_max_rear_left": "${percent_of_max_pressure_rear_left}",
-				"pressure_percent_of_max_rear_right": "${percent_of_max_pressure_rear_right}",
-				"pressure_psi_max_front": "${target-tire-pressure-front-max}",
-				"pressure_psi_max_rear": "${target-tire-pressure-rear-max}"
 			}
 		},
 		"action-set-var tesla drive-state": { 
@@ -115,7 +87,22 @@
 				"trunk_front_open": "${body.vehicle_state.ft}",
 				"trunk_rear_open": "${body.vehicle_state.rt}"
 			}
-		}	
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "vehicles",
+			"measurement": "tesla_0",
+			"fields": {
+				"odometer": "${body.vehicle_state.odometer}",
+				"battery_level": "${body.charge_state.battery_level}",
+				"battery_range": "${body.charge_state.battery_range}",
+				"distance_to_home": "${distance_to_home}"
+			},
+			"fields_removed": {
+				"outside_temp": "${body.climate_state.outside_temp}",
+				"inside_temp": "${body.climate_state.inside_temp}"
+			}
+		}
 	}
 }
 

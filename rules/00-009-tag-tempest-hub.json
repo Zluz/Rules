@@ -6,7 +6,8 @@
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "tempest - hub"
+			"value": "tempest - hub",
+			"expire": 1
 		},
 		"add label: tempest": {
 			"type": "add-label",

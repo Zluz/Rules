@@ -20,6 +20,17 @@
 				"hub_rssi": "${body.hub_rssi}",
 				"debug": "${body.debug}"
 			}
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "tempest_status",
+			"tags": {
+				"device": "tempest-01"
+			},
+			"fields": {
+				"voltage": "${body.voltage}"
+			}
 		}
 	}
 }

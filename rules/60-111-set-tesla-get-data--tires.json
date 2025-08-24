@@ -1,0 +1,77 @@
+{
+	"debug": true,
+	"labels": [ "tesla-vehicle" ],
+	"vars": {
+		"psi_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl}",
+		"psi_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr}",
+		"psi_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl}",
+		"psi_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr}",
+		"percent_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl} * 100 / ${target-tire-pressure-front}",
+		"percent_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr} * 100 / ${target-tire-pressure-front}",
+		"percent_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl} * 100 / ${target-tire-pressure-rear}",
+		"percent_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear}",
+		"percent_of_max_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl} * 100 / ${target-tire-pressure-front-max}",
+		"percent_of_max_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr} * 100 / ${target-tire-pressure-front-max}",
+		"percent_of_max_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl} * 100 / ${target-tire-pressure-rear-max}",
+		"percent_of_max_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear-max}"
+	},
+	"conditions": {
+		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
+		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
+		"moving": " ${body.drive_state.speed} > 0 "
+	},
+	"_conditions": {
+		"check-device-direct-1": " '${body.display_name}' === 'Nameless Midnight' "
+	},
+	"actions": {
+		"01 - action-tag": { 
+			"type": "tag", 
+			"value": "set - tesla data - tires",
+			"expire": 999999
+		},
+		"action-set-var tesla tires": { 
+			"type": "set", 
+			"name": "Vehicles",
+			"path": "$.Tesla_0.tires",
+			"value": "${body.display_name}",
+			"add": {
+				"pressure_bar_front_left": "${body.vehicle_state.tpms_pressure_fl}",
+				"pressure_bar_front_right": "${body.vehicle_state.tpms_pressure_fr}",
+				"pressure_bar_rear_left": "${body.vehicle_state.tpms_pressure_rl}",
+				"pressure_bar_rear_right": "${body.vehicle_state.tpms_pressure_rr}",
+				"pressure_psi_front_left": "${psi_pressure_front_left}",
+				"pressure_psi_front_right": "${psi_pressure_front_right}",
+				"pressure_psi_rear_left": "${psi_pressure_rear_left}",
+				"pressure_psi_rear_right": "${psi_pressure_rear_right}",
+
+				"pressure_percent_front_left": "${percent_pressure_front_left}",
+				"pressure_percent_front_right": "${percent_pressure_front_right}",
+				"pressure_percent_rear_left": "${percent_pressure_rear_left}",
+				"pressure_percent_rear_right": "${percent_pressure_rear_right}",
+				"pressure_psi_target_front": "${target-tire-pressure-front}",
+				"pressure_psi_target_rear": "${target-tire-pressure-rear}",
+
+				"pressure_percent_of_max_front_left": "${percent_of_max_pressure_front_left}",
+				"pressure_percent_of_max_front_right": "${percent_of_max_pressure_front_right}",
+				"pressure_percent_of_max_rear_left": "${percent_of_max_pressure_rear_left}",
+				"pressure_percent_of_max_rear_right": "${percent_of_max_pressure_rear_right}",
+				"pressure_psi_max_front": "${target-tire-pressure-front-max}",
+				"pressure_psi_max_rear": "${target-tire-pressure-rear-max}"
+			}
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "vehicles",
+			"measurement": "tire_condition",
+			"tags": {
+				"vehicle": "tesla_0"
+			},
+			"fields": {
+				"pressure_percent_of_max_front_left": "${percent_of_max_pressure_front_left}",
+				"pressure_percent_of_max_front_right": "${percent_of_max_pressure_front_right}",
+				"pressure_percent_of_max_rear_left": "${percent_of_max_pressure_rear_left}",
+				"pressure_percent_of_max_rear_right": "${percent_of_max_pressure_rear_right}"
+			}
+		}
+	}
+}
