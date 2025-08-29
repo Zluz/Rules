@@ -1,4 +1,5 @@
 {
+	"labels": [ "tempest-observation" ],
 	"vars": {
 		"voltage_percent_unbound": " ( ( ${body.obs.0.16} - 2.3 ) / ( 2.775 - 2.3 ) ) * 100 ",
 		"precip_type": "${body.obs.0.13}",

@@ -5,9 +5,8 @@
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "event/alert",
-			"_expire": 604800,
-			"expire._": "604800 is 7 days, i think .. but do not save these here.."
+			"value": "event/alert - ${body.key}",
+			"_expire": 604800
 		}
 	}
 }

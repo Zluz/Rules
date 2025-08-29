@@ -1,0 +1,14 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-vm-host-undefined": "'${vm-host}' === '00'",
+		"enabled": true
+	},
+	"actions": {
+		"add label: request-host-info": {
+			"type": "add-label",
+			"label": "request-host-info"
+		}
+	}
+}

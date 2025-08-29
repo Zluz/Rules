@@ -1,0 +1,31 @@
+{
+	"debug": false,
+	"labels": [ "returned-host-info" ],
+	"vars": {
+		"vm-host-id": "'${body.headers.X-Forwarded-For}'.split('.')[3]"
+	},
+	"conditions": {
+		"enabled": "true"
+	},
+	"_conditions": {
+		"check-event-type": " '${body.url}'.includes('request-info') ",
+		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
+	},
+	"actions": {
+		"set: Debug.node.vm-host": { 
+			"type": "set", 
+			"name": "Debug",
+			"path": "$.Rules-Processing.node-${vm-host-id}",
+			"value": "${body.headers.X-Forwarded-For}",
+			"add": {
+				"vm-host-ip": "${body.headers.X-Forwarded-For}",
+				"vm-host-id": "${vm-host-id}"
+			}
+		},
+        "set local: vm-host": {
+            "type": "set-instance-var",
+            "name": "vm-host",
+            "value": "${vm-host-id}"
+        }
+	}
+}

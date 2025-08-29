@@ -1,0 +1,19 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"add label: request-tesla-data": {
+			"type": "add-label",
+			"label": "request-public-ip"
+		}
+	}
+}
+

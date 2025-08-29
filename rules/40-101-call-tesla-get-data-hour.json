@@ -1,5 +1,5 @@
 {
-	"debug": true,
+	"debug": false,
 	"conditions": {
 		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
 		"enabled": true
@@ -10,18 +10,13 @@
 		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
 	},
 	"actions": {
-		"action-tag": { 
-			"type": "tag", 
-			"value": "call get-public-ip"
+		"_action-tag": { 
+			"type": "_tag", 
+			"value": "call tesla get-data"
 		},
-        "call-get-public-ip": {
-			"type": "endpoint",
-			"endpoint": "${tesla-api-url-base}/get-public-ip",
-            "method": "GET",
-            "headers": {
-				"cron.event.time": "${body.cron-event-time}",
-				"test-header-from-action": "${timestamp}"
-			}
+		"add label: request-tesla-data": {
+			"type": "add-label",
+			"label": "request-tesla-data"
 		}
 	}
 }

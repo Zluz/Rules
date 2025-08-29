@@ -9,13 +9,9 @@
 			"value": "tempest - status",
 			"expire": 1
 		},
-		"add label: tempest": {
+		"add label: tempest-status": {
 			"type": "add-label",
-			"label": "tempest"
-		},
-		"add label: test-label": {
-			"type": "add-label",
-			"label": "test-label"
+			"label": "tempest-status"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

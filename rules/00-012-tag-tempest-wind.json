@@ -9,9 +9,9 @@
 			"value": "tempest - wind",
 			"expire": 1
 		},
-		"add label: tempest": {
+		"add label: tempest-wind": {
 			"type": "add-label",
-			"label": "tempest"
+			"label": "tempest-wind"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

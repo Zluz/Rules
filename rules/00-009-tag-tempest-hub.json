@@ -9,9 +9,9 @@
 			"value": "tempest - hub",
 			"expire": 1
 		},
-		"add label: tempest": {
+		"add label: tempest-hub": {
 			"type": "add-label",
-			"label": "tempest"
+			"label": "tempest-hub"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

@@ -1,11 +1,13 @@
 {
 	"debug": true,
-	"labels": [ "tesla-vehicle" ],
+	"labels": [ "disabled" ],
+	"_labels": [ "tesla-vehicle" ],
 	"vars": {
 		"outside_temperature_f": " ${body.climate_state.outside_temp} * 9/5 + 32 ",
 		"inside_temperature_f": " ${body.climate_state.inside_temp} * 9/5 + 32 "
 	},
 	"conditions": {
+		"enabled": "false",
 		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
 		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
 		"valid_outside_temp": " ${body.climate_state.outside_temp} > -999.0 ",

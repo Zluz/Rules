@@ -1,0 +1,22 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+        "vehicle-moving": " '${Vehicles.Tesla_0.drive_state.shift_state}' === 'D' ",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-time": " /T02|T10/.test( '${body.cron-event-time}' ) ",
+		"check-10-minute-interval": "'${body.cron-event-time}'.split('T')[1]?.split(':')[1]"
+	},
+	"actions": {
+		"_action-tag": { 
+			"type": "_tag", 
+			"value": "call tesla get-data"
+		},
+		"add label: request-tesla-data": {
+			"type": "add-label",
+			"label": "request-tesla-data"
+		}
+	}
+}

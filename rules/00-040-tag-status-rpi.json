@@ -9,7 +9,8 @@
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "status/rpi"
+			"value": "status/rpi",
+			"expire": 1
 		}
 	}
 }

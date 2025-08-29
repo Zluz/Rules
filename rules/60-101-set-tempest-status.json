@@ -1,6 +1,6 @@
 {
-	"debug": true,
-	"labels": [ "tempest", "test-label", "required-label-test" ],
+	"debug": false,
+	"labels": [ "tempest-status" ],
 	"conditions": {
 		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
         "check-event-type": " '${body.type}' === 'device_status' "

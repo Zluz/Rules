@@ -6,7 +6,7 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "status/server",
-			"expire": 600
+			"expire": 1
 		}
 	}
 }

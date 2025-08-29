@@ -1,0 +1,18 @@
+{
+	"debug": false,
+	"labels": [ "request-public-ip" ],
+	"conditions": {
+		"enabled": true
+	},
+	"actions": {
+		"call-get-public-ip": {
+			"type": "endpoint",
+			"endpoint": "${tesla-api-url-base}/get-public-ip",
+			"method": "GET",
+			"headers": {
+				"cron.event.time": "${body.cron-event-time}",
+				"test-header-from-action": "${timestamp}"
+			}
+		}
+	}
+}

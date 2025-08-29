@@ -1,5 +1,4 @@
 {
-	"debug": true,
 	"conditions": {
 		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
 		"check-event-type": " '${body.type}' === 'obs_st' "
@@ -10,13 +9,9 @@
 			"value": "tempest - observation",
 			"expire": 1
 		},
-		"add label: tempest": {
+		"add label: tempest-observation": {
 			"type": "add-label",
-			"label": "tempest"
-		},
-		"add label: observation": {
-			"type": "add-label",
-			"label": "observation"
+			"label": "tempest-observation"
 		},
 		"filter: only tempest": {
 			"type": "rule-filter",

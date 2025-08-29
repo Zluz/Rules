@@ -1,4 +1,5 @@
 {
+	"labels": [ "tempest-wind" ],
 	"conditions": {
 		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' ",
 		"check-event-type": " '${body.type}' === 'rapid_wind' "

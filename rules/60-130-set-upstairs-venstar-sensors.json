@@ -20,7 +20,8 @@
 	"actions": {
 		"01 - action-tag": { 
 			"type": "tag", 
-			"value": "set - venstar sensors"
+			"value": "set - venstar sensors",
+			"expire": 1
 		},
 		"02 - action-set-var home.upstairs.sensors.thermostat": { 
 			"type": "set", 

@@ -5,15 +5,15 @@
 	},
 	"actions": {
 		"action-tag": { 
-			"type": "tag", 
-			"value": "event - call venstar sensors"
+			"_type": "tag", 
+			"_value": "event - call venstar sensors"
 		},
-        "call-venstar-up-sensors-endpoint": {
+		"call-venstar-up-sensors-endpoint": {
 			"type": "endpoint",
 			"endpoint": "${venstar-up-url-base}/query/sensors",
-            "method": "GET",
-            "headers": {
-                "cron.event.time": "${body.cron-event-time}",
+			"method": "GET",
+			"headers": {
+				"cron.event.time": "${body.cron-event-time}",
 				"test-header-from-action": "${timestamp}"
 			}
 		}

@@ -1,7 +1,8 @@
 {
 	"conditions": {
 		"check-cron-event": " 'Hour Minute'.includes( '${body.cron-event}' ) ",
-		"check-cron-schedule": " '${body.cron-schedule}'.includes( '0' ) "
+		"check-cron-schedule": " '${body.cron-schedule}'.includes( '0' ) ",
+		"enabled": false
 	},
 	"_conditions": {
 		"check-cron-event": " [ 'Hour', 'Minute' ].includes( '${body.cron-event}' ) ",

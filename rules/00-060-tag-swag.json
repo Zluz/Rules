@@ -1,0 +1,23 @@
+{
+	"conditions": {
+		"check-referer": "'${headers.referer}' == '${rule-proc-url-base}/docs'",
+		"check-origin": "'${headers.origin}' == '${rule-proc-url-base}'"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "swagger",
+			"expire": 9999
+		},
+		"action-set-var swagger event": { 
+			"type": "set", 
+			"name": "Debug",
+			"path": "$.swagger",
+			"value": "${headers.referer}",
+			"add": {
+				"referer": "${headers.referer}",
+				"origin": "${headers.origin}"
+			}
+		}
+	}
+}

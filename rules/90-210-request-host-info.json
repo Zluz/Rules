@@ -1,0 +1,17 @@
+{
+	"debug": true,
+	"labels": [ "request-host-info" ],
+	"conditions": {
+		"enabled": true
+	},
+	"actions": {
+		"call-get-public-ip": {
+			"type": "endpoint",
+			"endpoint": "${tesla-api-url-base}/request-info",
+			"method": "GET",
+			"headers": {
+				"test-header-from-action": "${timestamp}"
+			}
+		}
+	}
+}

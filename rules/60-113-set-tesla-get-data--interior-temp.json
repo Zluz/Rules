@@ -1,0 +1,36 @@
+{
+	"debug": false,
+	"labels": [ "tesla-vehicle" ],
+	"vars": {
+		"inside_temperature_f": " ${body.climate_state.inside_temp} * 9/5 + 32 "
+	},
+	"conditions": {
+		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
+		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
+		"valid_inside_temp": " ${body.climate_state.inside_temp} > -999.0 "
+	},
+	"actions": {
+		"action-set-var tesla temperatures": { 
+			"type": "set", 
+			"name": "Vehicles",
+			"path": "$.Tesla_0.environmental.interior",
+			"value": "${body.climate_state.inside_temp}",
+			"add": {
+				"temperature_c": "${body.climate_state.inside_temp}",
+				"temperature_f": "${inside_temperature_f}"
+			}
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "tesla_interior",
+			"tags": {
+				"vehicle": "tesla_0"
+			},
+			"fields": {
+				"temperature_c": "${body.climate_state.inside_temp}",
+				"temperature_f": "${inside_temperature_f}"
+			}
+		}
+	}
+}

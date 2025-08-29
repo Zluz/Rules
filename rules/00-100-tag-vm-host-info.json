@@ -1,0 +1,17 @@
+{
+	"conditions": {
+		"check-event-type": " '${body.url}'.includes('request-info') ",
+		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
+	},
+	"actions": {
+		"tag": { 
+			"type": "tag", 
+			"value": "vm-host-info",
+			"_expire": 1
+		},
+		"add label: returned-host-info": {
+			"type": "add-label",
+			"label": "returned-host-info"
+		}
+	}
+}
