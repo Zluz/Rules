@@ -1,0 +1,20 @@
+{
+	"conditions": {
+		"check-event-type": " '${headers.event-type}' === 'Powerwall bulk metrics' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "powerwall-bulk ${headers.powerwall}",
+			"expire": 10
+		},
+		"add label: powerwall-bulk": {
+			"type": "add-label",
+			"label": "powerwall-bulk"
+		},
+		"filter: only powerwall": {
+			"type": "rule-filter",
+			"match": ".*powerwall.*"
+		}
+	}
+}

@@ -24,12 +24,13 @@
 			"type": "post-influx",
 			"bucket": "environmental",
 			"measurement": "tesla_exterior",
+			"timestamp": "${body.climate_state.timestamp}",
 			"tags": {
 				"vehicle": "tesla_0"
 			},
 			"fields": {
-				"outside_temperature_c": "${body.climate_state.outside_temp}",
-				"outside_temperature_f": "${outside_temperature_f}"
+				"temperature_c": "${body.climate_state.outside_temp}",
+				"temperature_f": "${outside_temperature_f}"
 			}
 		}
 	}

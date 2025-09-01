@@ -1,0 +1,37 @@
+{
+	"debug": true,
+	"_vars": {
+		"brightness_str": "'${body.cron-event-time}'.substring(14,16)",
+		"brightness_int": " ${brightness_str} * 3 "
+	},
+	"conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-time": " /T05|T06|T07|T08/.test( '${body.cron-event-time}' ) ",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"enabled": false
+	},
+	"actions": {
+		"call-hue-bridge - adjust bulb 2": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/2/state",
+			"method": "PUT",
+			"headers": {
+				"cron.event.time": "${body.cron-event-time}",
+				"test-header-from-action": "${timestamp}"
+			},
+			"body": {
+				"on":true,
+				"xy":[0.3221,0.3517],
+				"bri:number":29
+			},
+			"_body": {
+				"on": true,
+				"bri:number": "${brightness_int}"
+			}
+		}
+	}
+}

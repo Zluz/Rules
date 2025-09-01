@@ -3,7 +3,7 @@
 	"conditions": {
 		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
 		"check-10-minute-interval": "'${body.cron-event-time}'.substring(15,16) === '0'",
-        "away-from-home": " ${Vehicles.Tesla_0.distance_to_home} > 1.0 ",
+		"away-from-home": " ${Vehicles.Tesla_0.distance_to_home} > 1.0 ",
 		"enabled": true
 	},
 	"_conditions": {

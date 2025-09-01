@@ -2,16 +2,16 @@
 	"debug": false,
 	"conditions": {
 		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
-		"check-10-minute-interval": "'${body.cron-event-time}'.substring(15,16) === '0'",
-		"check-event-time": " /T11|T10/.test( '${body.cron-event-time}' ) ",
+        "vehicle-charging": " ${Vehicles.Tesla_0.charge_state.charge_rate} > D ",
 		"enabled": true
 	},
 	"_conditions": {
+		"check-event-time": " /T02|T10/.test( '${body.cron-event-time}' ) ",
 		"check-10-minute-interval": "'${body.cron-event-time}'.split('T')[1]?.split(':')[1]"
 	},
 	"actions": {
-		"action-tag": { 
-			"type": "tag", 
+		"_action-tag": { 
+			"type": "_tag", 
 			"value": "call tesla get-data"
 		},
 		"add label: request-tesla-data": {

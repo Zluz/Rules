@@ -7,7 +7,7 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "tempest - observation",
-			"expire": 1
+			"expire": 10
 		},
 		"add label: tempest-observation": {
 			"type": "add-label",

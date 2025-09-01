@@ -11,8 +11,8 @@
 		"check-event-type": " '${body.type}' === 'obs_st' "
 	},
 	"actions": {
-		"action-tag": { 
-			"type": "tag", 
+		"_action-tag": { 
+			"type": "_tag", 
 			"value": "set - tempest observation",
 			"expire": 1
 		},
@@ -20,6 +20,7 @@
 			"type": "post-influx",
 			"bucket": "environmental",
 			"measurement": "tempest_observation",
+			"timestamp": "${body.obs.0.0}",
 			"tags": {
 				"device": "tempest-01"
 			},

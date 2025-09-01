@@ -13,15 +13,21 @@
 		"percent_of_max_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl} * 100 / ${target-tire-pressure-front-max}",
 		"percent_of_max_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr} * 100 / ${target-tire-pressure-front-max}",
 		"percent_of_max_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl} * 100 / ${target-tire-pressure-rear-max}",
-		"percent_of_max_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear-max}"
+		"percent_of_max_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear-max}",
+		"last_update": " 0 ",
+		"_last_update": " ${ifdefined; ${Vehicles.Tesla_0.tires.measurement_timestamp}; 0 } "
 	},
 	"conditions": {
 		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
 		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
-		"moving": " ${body.drive_state.speed} > 0 "
+		"updated-measurement": " ${body.vehicle_state.tpms_last_seen_pressure_time_fl} > ${last_update} ",
+		"enabled": true
 	},
 	"_conditions": {
-		"check-device-direct-1": " '${body.display_name}' === 'Nameless Midnight' "
+		"moving": " ${body.drive_state.speed} > 0 ",
+		"check-device-direct-1": " '${body.display_name}' === 'Nameless Midnight' ",
+		"updated-measurement": " ${body.vehicle_state.tpms_last_seen_pressure_time_fl} > ${Vehicles.Tesla_0.tires.measurement_timestamp} ",
+		"_": true
 	},
 	"actions": {
 		"01 - action-tag": { 
@@ -35,6 +41,8 @@
 			"path": "$.Tesla_0.tires",
 			"value": "${body.display_name}",
 			"add": {
+				"measurement_timestamp": "${body.vehicle_state.tpms_last_seen_pressure_time_fl}",
+
 				"pressure_bar_front_left": "${body.vehicle_state.tpms_pressure_fl}",
 				"pressure_bar_front_right": "${body.vehicle_state.tpms_pressure_fr}",
 				"pressure_bar_rear_left": "${body.vehicle_state.tpms_pressure_rl}",
@@ -63,10 +71,16 @@
 			"type": "post-influx",
 			"bucket": "vehicles",
 			"measurement": "tire_condition",
+			"timestamp": "${body.vehicle_state.tpms_last_seen_pressure_time_fl}",
 			"tags": {
 				"vehicle": "tesla_0"
 			},
 			"fields": {
+				"pressure_percent_front_left": "${percent_pressure_front_left}",
+				"pressure_percent_front_right": "${percent_pressure_front_right}",
+				"pressure_percent_rear_left": "${percent_pressure_rear_left}",
+				"pressure_percent_rear_right": "${percent_pressure_rear_right}",
+
 				"pressure_percent_of_max_front_left": "${percent_of_max_pressure_front_left}",
 				"pressure_percent_of_max_front_right": "${percent_of_max_pressure_front_right}",
 				"pressure_percent_of_max_rear_left": "${percent_of_max_pressure_rear_left}",

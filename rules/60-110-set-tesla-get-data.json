@@ -5,20 +5,6 @@
 		"distance_to_home": " Math.sqrt( Math.pow( 111.1 * ( ${home-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${home-longitude} - ${body.drive_state.longitude} ), 2) ) ",
 		"distance_to_work": " Math.sqrt( Math.pow( 111.1 * ( ${work-latitude} - ${body.drive_state.latitude} ), 2) + Math.pow( 85.1 * ( ${work-longitude} - ${body.drive_state.longitude} ), 2) ) "
 	},
-	"vars_removed": {
-		"psi_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl}",
-		"psi_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr}",
-		"psi_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl}",
-		"psi_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr}",
-		"percent_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl} * 100 / ${target-tire-pressure-front}",
-		"percent_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr} * 100 / ${target-tire-pressure-front}",
-		"percent_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl} * 100 / ${target-tire-pressure-rear}",
-		"percent_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear}",
-		"percent_of_max_pressure_front_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_fl} * 100 / ${target-tire-pressure-front-max}",
-		"percent_of_max_pressure_front_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_fr} * 100 / ${target-tire-pressure-front-max}",
-		"percent_of_max_pressure_rear_left": "14.503773773 * ${body.vehicle_state.tpms_pressure_rl} * 100 / ${target-tire-pressure-rear-max}",
-		"percent_of_max_pressure_rear_right": "14.503773773 * ${body.vehicle_state.tpms_pressure_rr} * 100 / ${target-tire-pressure-rear-max}"
-	},
 	"conditions": {
 		"check-event-type": " '${headers.calling_action}'.includes('call-tesla-get-data-0') ",
 		"check-event-vehicle": " '${headers.calling_action_endpoint}'.includes('${tesla-api-url-base}') ",
@@ -92,6 +78,7 @@
 			"type": "post-influx",
 			"bucket": "vehicles",
 			"measurement": "tesla_0",
+			"timestamp": "${body.vehicle_state.timestamp}",
 			"fields": {
 				"odometer": "${body.vehicle_state.odometer}",
 				"battery_level": "${body.charge_state.battery_level}",

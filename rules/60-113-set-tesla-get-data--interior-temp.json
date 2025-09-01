@@ -24,6 +24,7 @@
 			"type": "post-influx",
 			"bucket": "environmental",
 			"measurement": "tesla_interior",
+			"timestamp": "${body.climate_state.timestamp}",
 			"tags": {
 				"vehicle": "tesla_0"
 			},

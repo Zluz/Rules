@@ -1,11 +1,12 @@
 {
 	"debug": false,
+	"labels": [ "tesla-vehicle" ],
 	"conditions": {
-		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
-        "vehicle-moving": " '${Vehicles.Tesla_0.drive_state.shift_state}' === 'D' ",
+		"vehicle-moving": " '${Vehicles.Tesla_0.drive_state.shift_state}' === 'D' ",
 		"enabled": true
 	},
 	"_conditions": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
 		"check-event-time": " /T02|T10/.test( '${body.cron-event-time}' ) ",
 		"check-10-minute-interval": "'${body.cron-event-time}'.split('T')[1]?.split(':')[1]"
 	},
@@ -17,6 +18,18 @@
 		"add label: request-tesla-data": {
 			"type": "add-label",
 			"label": "request-tesla-data"
+		},
+		"action-set-var tesla last_drive": { 
+			"type": "set", 
+			"name": "Vehicles",
+			"path": "$.Tesla_0.last_drive",
+			"value": "${Vehicles.Tesla_0.drive_state.speed}",
+			"add": {
+				"active_route_destination": "${Vehicles.Tesla_0.drive_state.active_route_destination}",
+				"shift_state": "${Vehicles.Tesla_0.drive_state.shift_state}",
+				"speed": "${Vehicles.Tesla_0.drive_state.speed}",
+				"power": "${Vehicles.Tesla_0.drive_state.power}"
+			}
 		}
 	}
 }
