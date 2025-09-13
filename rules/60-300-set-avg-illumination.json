@@ -1,0 +1,21 @@
+{
+	"debug": false,
+	"conditions": {
+        "action-is-eval-illumination": "'${headers.calling_action}' === 'call-postgres-eval-illumination'",
+		"enabled": "true"
+	},
+	"_conditions": {
+        "event-is-illum-response": "'${body.comment}' === 'call-postgres-eval-illumination'",
+		"check-event-type": " '${body.url}'.includes('request-info') ",
+		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
+	},
+	"actions": {
+		"set: Debug.node.vm-host": { 
+			"type": "set", 
+			"name": "Weather",
+			"path": "$.average-illumination",
+			"value": "${body.rows.0.avg}"
+		}
+	}
+}
+

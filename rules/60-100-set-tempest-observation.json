@@ -11,10 +11,10 @@
 		"check-event-type": " '${body.type}' === 'obs_st' "
 	},
 	"actions": {
-		"_action-tag": { 
+		"action-tag": { 
 			"type": "_tag", 
 			"value": "set - tempest observation",
-			"expire": 1
+			"expire": 9999
 		},
 		"post to influx": {
 			"type": "post-influx",
@@ -72,6 +72,20 @@
 			},
 			"_add": {
 				"solar_radiation_corrected": "${body.obs.0.18}"
+			}
+		},
+		"post to postgres": {
+			"type": "endpoint",
+			"endpoint": "${postgres-post-url-base}/tempest_observations",
+			"method": "POST",
+			"_headers": {
+				"Content-Type": "application/json"
+			},
+			"body": {
+				"timestamp": "${body.obs.0.0}",
+				"illuminance": "${body.obs.0.9}",
+				"air_temperature_f": "${air_temperature_f}",
+				"voltage": "${body.obs.0.16}"
 			}
 		}
 	}
