@@ -1,0 +1,87 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"high-outdoor-illumination": " ${Weather.average-illumination.value} > 1400 ",
+		"enabled": "true"
+	},
+	"actions": {
+		"call-hue-bridge - turn off garage bulb-1": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/11/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-1996-b"
+			}
+		},
+		"call-hue-bridge - turn off garage bulb-2": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/12/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-1996-c"
+			}
+		},
+		"call-hue-bridge - turn off garage bulb-3": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/13/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-1996-d"
+			}
+		},
+		"call-hue-bridge - turn off garage bulb-4": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/15/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-2000-c"
+			}
+		},
+		"call-hue-bridge - turn off deck door light": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/14/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-2000-b"
+			}
+		},
+		"call-hue-bridge - turn off basement walk-out light": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/5/state",
+			"method": "PUT",
+			"blocking": true,
+			"body": {
+				"transitiontime": 40,
+				"on": false
+			},
+			"notes": {
+				"device": "o-1983"
+			}
+		}
+	}
+}

@@ -1,0 +1,87 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Minute'",
+		"low-outdoor-illumination": " ${Weather.average-illumination.value} < 1000 ",
+		"enabled": "true"
+	},
+	"actions": {
+		"call-hue-bridge - turn on garage bulb-1": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/11/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 250
+			},
+			"notes": {
+				"device": "o-1996-b: leftmost"
+			}
+		},
+		"call-hue-bridge - turn on garage bulb-2": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/13/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 250
+			},
+			"notes": {
+				"device": "o-1996-d: second light"
+			}
+		},
+		"call-hue-bridge - turn on garage bulb-3": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/15/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 250
+			},
+			"notes": {
+				"device": "o-2000-c: third light"
+			}
+		},
+		"call-hue-bridge - turn on garage bulb-4": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/12/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 250
+			},
+			"notes": {
+				"device": "o-1996-c: rightmost"
+			}
+		},
+		"call-hue-bridge - turn on deck door light": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/14/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 250
+			},
+			"notes": {
+				"device": "o-2000-b"
+			}
+		},
+		"call-hue-bridge - turn on basement walk-out light": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/5/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 200
+			},
+			"notes": {
+				"device": "o-1983"
+			}
+		}
+	}
+}

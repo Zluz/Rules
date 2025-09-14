@@ -1,4 +1,5 @@
 {
+	"_": "gitlab does not like 'swagger' in the filename",
 	"conditions": {
 		"check-referer": "'${headers.referer}' == '${rule-proc-url-base}/docs'",
 		"check-origin": "'${headers.origin}' == '${rule-proc-url-base}'"
