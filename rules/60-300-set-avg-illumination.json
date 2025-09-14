@@ -10,11 +10,24 @@
 		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
 	},
 	"actions": {
-		"set: Debug.node.vm-host": { 
+		"set: Weather.average-illumination": { 
 			"type": "set", 
 			"name": "Weather",
 			"path": "$.average-illumination",
-			"value": "${body.rows.0.avg}"
+			"_value": "${body.rows.0.avg}",
+			"value": "${body.rows.0.percentile_cont}"
+		},
+		"post to influx": {
+			"type": "post-influx",
+			"bucket": "environmental",
+			"measurement": "tempest_aggregation",
+			"timestamp": "${timestamp}",
+			"fields": {
+				"average_illumination": "${body.rows.0.percentile_cont}"
+			},
+			"_fields": {
+				"average_illumination": "${body.rows.0.avg}"
+			}
 		}
 	}
 }

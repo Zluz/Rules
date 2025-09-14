@@ -1,0 +1,16 @@
+{
+	"conditions": {
+		"check-action-endpoint": "'${headers.calling_action_endpoint}'.includes('${postgres-query-url-base}')"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "postgres-query-response",
+			"expire": 10
+		},
+		"add label: postgres-query-response": {
+			"type": "add-label",
+			"label": "postgres-query-response"
+		}
+	}
+}

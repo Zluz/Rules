@@ -18,7 +18,11 @@
 				"test-header-from-action": "${timestamp}"
 			},
 			"body": {
-				"sql": "SELECT AVG(illuminance) FROM tempest_observations WHERE timestamp >= EXTRACT(EPOCH FROM NOW() - INTERVAL '30 minutes');",
+				"sql": "SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY illuminance) FROM tempest_observations WHERE timestamp >= EXTRACT(EPOCH FROM NOW() - INTERVAL '10 minutes');",
+				"comment": "Rule: 90-300-call-postgres-eval-illumination"
+			},
+			"_body": {
+				"sql": "SELECT AVG(illuminance) FROM tempest_observations WHERE timestamp >= EXTRACT(EPOCH FROM NOW() - INTERVAL '10 minutes');",
 				"comment": "Rule: 90-300-call-postgres-eval-illumination"
 			}
 		}
