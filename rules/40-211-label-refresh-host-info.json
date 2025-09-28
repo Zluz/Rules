@@ -1,0 +1,14 @@
+{
+	"_": "this will refresh the vm-host value (it would expire otherwise)",
+	"debug": false,
+	"conditions": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Hour'",
+		"enabled": true
+	},
+	"actions": {
+		"add label: request-host-info": {
+			"type": "add-label",
+			"label": "request-host-info"
+		}
+	}
+}

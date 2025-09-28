@@ -1,4 +1,5 @@
 {
+	"_": "this will set vm-host if it has not already been resolved (defaults to 00)",
 	"debug": false,
 	"conditions": {
 		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",

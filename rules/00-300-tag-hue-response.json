@@ -1,6 +1,6 @@
 {
 	"conditions": {
-        "check-action-endpoint": "'${headers.calling_action_endpoint}'.includes('${hue-01-url-base}')"
+		"check-action-endpoint": "'${headers.calling_action_endpoint}'.includes('${hue-01-url-base}')"
 	},
 	"actions": {
 		"action-tag": { 

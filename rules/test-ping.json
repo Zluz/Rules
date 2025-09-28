@@ -1,19 +1,19 @@
 {
 	"conditions": {
 		"check-event-type": "'${body.cron-event}' === 'Minute'",
-		"disable-rule": "false"
+		"enabled": "false"
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
 			"value": "event - minute ping"
 		},
-        "call-ping-endpoint": {
+		"call-ping-endpoint": {
 			"type": "endpoint",
-            "endpoint": "${rule-proc-url-base}/ping",
-            "method": "GET",
-            "headers": {
-                "cron.event.time": "${body.cron-event-time}"
+			"endpoint": "${rule-proc-url-base}/ping",
+			"method": "GET",
+			"headers": {
+				"cron.event.time": "${body.cron-event-time}"
 			}
 		}
 	}

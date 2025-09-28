@@ -22,10 +22,10 @@
 				"vm-host-id": "${vm-host-id}"
 			}
 		},
-        "set local: vm-host": {
-            "type": "set-instance-var",
-            "name": "vm-host",
-            "value": "${vm-host-id}"
-        }
+		"set local: vm-host": {
+			"type": "set-instance-var",
+			"name": "vm-host",
+			"value": "${vm-host-id}"
+		}
 	}
 }
