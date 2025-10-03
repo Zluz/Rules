@@ -1,0 +1,22 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Hour'",
+		"cool-temperature": " ${Home.upstairs.sensors.thermostat.temp} < 80 ",
+		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
+		"check-event-time": " /T09|T08/.test( '${body.cron-event-time}' ) ",
+		"enabled": "true"
+	},
+	"actions": {
+		"call-hue-bridge - turn on outlet": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/10/state",
+			"method": "PUT",
+			"body": {
+				"on": true
+			},
+			"notes": {
+				"device": "o-1989-c"
+			}
+		}
+	}
+}

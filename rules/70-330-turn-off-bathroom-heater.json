@@ -1,0 +1,21 @@
+{
+	"conditions": {
+		"check-event-type": "'${body.cron-event}' === 'Hour'",
+		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
+		"check-event-time": " /T10|T11/.test( '${body.cron-event-time}' ) ",
+		"enabled": "true"
+	},
+	"actions": {
+		"call-hue-bridge - turn off outlet": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/10/state",
+			"method": "PUT",
+			"body": {
+				"on": false
+			},
+			"notes": {
+				"device": "o-1989-c"
+			}
+		}
+	}
+}
