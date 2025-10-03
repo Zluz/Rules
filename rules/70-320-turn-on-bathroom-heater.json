@@ -3,7 +3,7 @@
 		"check-event-type": "'${body.cron-event}' === 'Hour'",
 		"cool-temperature": " ${Home.upstairs.sensors.thermostat.temp} < 80 ",
 		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
-		"check-event-time": " /T09|T08/.test( '${body.cron-event-time}' ) ",
+		"check-event-time": " /T07|T08|T09/.test( '${body.cron-event-time}' ) ",
 		"enabled": "true"
 	},
 	"actions": {

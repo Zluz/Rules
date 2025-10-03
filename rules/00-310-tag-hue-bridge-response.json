@@ -1,0 +1,19 @@
+{
+	"conditions": {
+		"check-action": "'${headers.calling_action}'.includes('call-get-hue-bridge')"
+	},
+	"_conditions": {
+		"check-action-endpoint": "'${headers.calling_action_endpoint}'.includes('${hue-01-url-base}')"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "hue-bridge-response",
+			"expire": 1
+		},
+		"add label: hue-bridge-response": {
+			"type": "add-label",
+			"label": "hue-bridge-response"
+		}
+	}
+}

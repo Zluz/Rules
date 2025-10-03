@@ -1,0 +1,28 @@
+{
+	"debug": false,
+	"labels": [ "request-hue-bridge-info" ],
+	"vars": {
+		"bridge-octet": "'${body.ipaddress}'.split('.')[3]",
+		"bridge-ip": "'${body.ipaddress}'"
+	},
+	"conditions": {
+		"enabled": "true"
+	},
+	"_conditions": {
+		"check-event-type": " '${body.url}'.includes('request-info') ",
+		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
+	},
+	"actions": {
+		"set: Debug.node.vm-host": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.network.hue.bridge.${bridge-ip}",
+			"value": "${body.name}",
+			"add": {
+				"name": "${body.name}",
+				"zigbeechannel": "${body.zigbeechannel}",
+				"internet": "${body.internetservices.internet}"
+			}
+		}
+	}
+}

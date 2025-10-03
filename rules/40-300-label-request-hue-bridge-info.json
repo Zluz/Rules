@@ -1,0 +1,13 @@
+{
+	"debug": false,
+	"conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"enabled": true
+	},
+	"actions": {
+		"add label: request-hue-bridge-info": {
+			"type": "add-label",
+			"label": "request-hue-bridge-info"
+		}
+	}
+}

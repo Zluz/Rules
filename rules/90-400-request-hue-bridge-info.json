@@ -1,0 +1,19 @@
+{
+	"debug": true,
+	"labels": [ "request-hue-bridge-info" ],
+	"conditions": {
+		"enabled": true
+	},
+	"actions": {
+		"call-get-hue-bridge-01-info": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/config",
+			"method": "GET"
+		},
+		"call-get-hue-bridge-02-info": {
+			"type": "endpoint",
+			"endpoint": "${hue-02-url-base}/api/${hue-02-key}/config",
+			"method": "GET"
+		}
+	}
+}
