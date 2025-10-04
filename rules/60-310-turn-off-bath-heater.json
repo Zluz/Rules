@@ -1,0 +1,26 @@
+{
+	"debug": false,
+	"conditions": {
+		"up-bath-heater": "'${body.comment}' === 'target-device=up-bath-heater'",
+		"numeric result": " ${body.rows.0.count} === 0 ",
+		"enabled": "true"
+	},
+	"_conditions": {
+		"action-is-call-postgres-check-for-bath-heater": "'${headers.calling_action}' === 'call-postgres-check-for-bath-heater'",
+		"check-event-type": " '${body.url}'.includes('request-info') ",
+		"check-event-values": " '${body.headers.X-Forwarded-For}'.includes('192.168') "
+	},
+	"actions": {
+		"call-hue-bridge - turn off bath heater": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/10/state",
+			"method": "PUT",
+			"body": {
+				"on": false
+			},
+			"notes": {
+				"device": "o-1989-c"
+			}
+		}
+	}
+}

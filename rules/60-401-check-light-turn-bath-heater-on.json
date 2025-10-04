@@ -1,0 +1,49 @@
+{
+	"debug": false,
+	"labels": [ "hue-response" ],
+	"conditions": {
+		"bath-light-was-off": " '${Home.upstairs.sensors.hall-bathroom.light.value}' === 'OFF' ",
+		"confirm-device": " '${body.name}' === 'o-1995-a' ",
+		"bath-light-is-now-on": "${body.state.reachable}",
+		"enabled": "true"
+	},
+	"_conditions": {
+		"bath-light-was-off": " '${Home.upstairs.sensors.hall-bathroom.light.value}' === 'OFF' ",
+		"enabled": "true"
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "bath light ON",
+			"expire": 9999
+		},
+		"set: bathroom light": { 
+			"type": "set", 
+			"name": "Home",
+			"path": "$.upstairs.sensors.hall-bathroom.light",
+			"value": "ON"
+		},
+		"post to postgres": {
+			"type": "endpoint",
+			"endpoint": "${postgres-post-url-base}/states",
+			"method": "POST",
+			"headers": {
+				"Prefer": "resolution=ignore-duplicates"
+			},
+			"body": {
+				"tag": "up-bath.heater.light-on"
+			}
+		},
+		"call-hue-bridge - turn on bathroom heater": {
+			"type": "endpoint",
+			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/10/state",
+			"method": "PUT",
+			"body": {
+				"on": true
+			},
+			"notes": {
+				"device": "o-1989-c: hall-bathroom heater"
+			}
+		}
+	}
+}

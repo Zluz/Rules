@@ -16,7 +16,7 @@
 		"set: Debug.node.vm-host": { 
 			"type": "set", 
 			"name": "Home",
-			"path": "$.network.hue.bridge.${bridge-ip}",
+			"path": "$.network.hue.bridge.${bridge-octet}",
 			"value": "${body.name}",
 			"add": {
 				"name": "${body.name}",

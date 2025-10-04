@@ -1,9 +1,12 @@
 {
 	"conditions": {
 		"check-event-type": "'${body.cron-event}' === 'Hour'",
-		"cool-temperature": " ${Home.upstairs.sensors.thermostat.temp} < 80 ",
 		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
 		"check-event-time": " /T07|T08|T09/.test( '${body.cron-event-time}' ) ",
+		"enabled": "true"
+	},
+	"_conditions": {
+		"cool-temperature": " ${Home.upstairs.sensors.thermostat.temp} < 80 ",
 		"enabled": "true"
 	},
 	"actions": {
@@ -16,6 +19,17 @@
 			},
 			"notes": {
 				"device": "o-1989-c"
+			}
+		},
+		"post to postgres": {
+			"type": "endpoint",
+			"endpoint": "${postgres-post-url-base}/states",
+			"method": "POST",
+			"headers": {
+				"Prefer": "resolution=ignore-duplicates"
+			},
+			"body": {
+				"tag": "up-bath.heater.schedule"
 			}
 		}
 	}

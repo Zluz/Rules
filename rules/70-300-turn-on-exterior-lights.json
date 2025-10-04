@@ -5,6 +5,19 @@
 		"enabled": "true"
 	},
 	"actions": {
+		"call-hue-bridge - turn on porch light": {
+			"type": "endpoint",
+			"endpoint": "${hue-02-url-base}/api/${hue-02-key}/lights/16/state",
+			"method": "PUT",
+			"body": {
+				"on": true,
+				"transitiontime": 40,
+				"bri:number": 249
+			},
+			"notes": {
+				"device": "o-2015-a: this is a color light"
+			}
+		},
 		"call-hue-bridge - turn on garage bulb-1": {
 			"type": "endpoint",
 			"endpoint": "${hue-01-url-base}/api/${hue-01-key}/lights/11/state",

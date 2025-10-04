@@ -1,6 +1,7 @@
 {
 	"conditions": {
-		"check-action": "'${headers.calling_action}'.includes('call-get-hue-bridge')"
+		"check-action": "'${headers.calling_action}'.includes('call-get-hue-bridge')",
+		"enabled": false
 	},
 	"_conditions": {
 		"check-action-endpoint": "'${headers.calling_action_endpoint}'.includes('${hue-01-url-base}')"

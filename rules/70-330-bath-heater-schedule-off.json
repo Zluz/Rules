@@ -16,6 +16,14 @@
 			"notes": {
 				"device": "o-1989-c"
 			}
+		},
+		"post to postgres": {
+			"type": "endpoint",
+			"endpoint": "${postgres-post-url-base}/states",
+			"method": "DELETE",
+			"body": {
+				"tag": "up-bath.heater.schedule"
+			}
 		}
 	}
 }

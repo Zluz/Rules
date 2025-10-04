@@ -6,7 +6,7 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "postgres-post-response",
-			"expire": 10
+			"expire": 1
 		},
 		"add label: postgres-post-response": {
 			"type": "add-label",

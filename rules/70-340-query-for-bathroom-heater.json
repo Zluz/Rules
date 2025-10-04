@@ -1,0 +1,27 @@
+{
+	"debug": true,
+	"conditions": {
+		"check-event-type-second": "'${body.cron-event}' === 'Minute'",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"call-postgres-check-for-bath-heater": {
+			"type": "endpoint",
+			"endpoint": "${postgres-query-url-base}/query",
+			"method": "POST",
+			"headers": {
+				"test-header-from-action": "${timestamp}",
+				"target-device": "up-bath-heater"
+			},
+			"body": {
+				"sql": "SELECT count(*) FROM states WHERE tag IN ('up-bath.heater.light-on','up-bath.heater.schedule');",
+				"comment": "target-device=up-bath-heater"
+			}
+		}
+	}
+}
