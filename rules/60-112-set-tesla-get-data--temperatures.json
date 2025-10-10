@@ -16,8 +16,7 @@
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "set - tesla data - temperatures",
-			"expire": 999999
+			"value": "set - tesla data - temperatures"
 		},
 		"action-set-var tesla temperatures": { 
 			"type": "set", 

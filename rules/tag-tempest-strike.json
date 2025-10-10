@@ -7,7 +7,7 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "tempest - strike",
-			"expire": 99999
+			"expire": 9999
 		},
 		"action-set-var weather": { 
 			"type": "set", 

@@ -16,8 +16,7 @@
 	"actions": {
 		"01 - action-tag": { 
 			"type": "tag", 
-			"value": "set - tesla data",
-			"expire": 999999
+			"value": "set - tesla data"
 		},
 		"action-set-var tesla root": { 
 			"type": "set", 

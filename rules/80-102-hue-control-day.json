@@ -1,5 +1,5 @@
 {
-	"debug": true,
+	"debug": false,
 	"_vars": {
 		"brightness_str": "'${body.cron-event-time}'.substring(14,16)",
 		"brightness_int": " ${brightness_str} * 3 "
