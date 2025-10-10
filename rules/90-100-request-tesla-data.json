@@ -1,5 +1,5 @@
 {
-	"debug": true,
+	"debug": false,
 	"labels": [ "request-tesla-data" ],
 	"conditions": {
 		"enabled": true

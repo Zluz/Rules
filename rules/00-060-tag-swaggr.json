@@ -8,7 +8,7 @@
 		"action-tag": { 
 			"type": "tag", 
 			"value": "swagger",
-			"expire": 9999
+			"expire": 99999
 		},
 		"action-set-var swagger event": { 
 			"type": "set", 

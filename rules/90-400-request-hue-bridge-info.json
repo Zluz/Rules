@@ -1,5 +1,5 @@
 {
-	"debug": true,
+	"debug": false,
 	"labels": [ "request-hue-bridge-info" ],
 	"conditions": {
 		"enabled": true

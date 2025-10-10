@@ -1,5 +1,5 @@
 {
-	"debug": true,
+	"debug": false,
 	"conditions": {
 		"check-event-type-second": "'${body.cron-event}' === 'Minute'",
 		"enabled": true

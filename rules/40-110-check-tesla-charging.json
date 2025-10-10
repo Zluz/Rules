@@ -16,7 +16,7 @@
 		"_action-tag": { 
 			"type": "_tag", 
 			"value": "alert - tesla not plugged-in",
-			"expire": 99999
+			"expire": 9999
 		},
 		"action-set-var": { 
 			"type": "set", 

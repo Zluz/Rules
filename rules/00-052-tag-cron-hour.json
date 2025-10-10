@@ -10,7 +10,7 @@
 		"add label: cron-hour": {
 			"type": "add-label",
 			"label": "cron-hour",
-			"expire": 99999
+			"expire": 999
 		}
 	}
 }

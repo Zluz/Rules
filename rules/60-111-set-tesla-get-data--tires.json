@@ -33,7 +33,7 @@
 		"01 - action-tag": { 
 			"type": "tag", 
 			"value": "set - tesla data - tires",
-			"expire": 999999
+			"expire": 9999
 		},
 		"action-set-var tesla tires": { 
 			"type": "set", 
