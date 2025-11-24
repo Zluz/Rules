@@ -1,0 +1,30 @@
+{
+	"conditions": {
+		"check-event-type-day": "'${body.cron-event}' === 'Day'",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-day": "'${body.cron-event}' === 'Day'",
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"delete-rows-from-store_event": {
+			"type": "endpoint",
+			"endpoint": "${postgres-query-url-base}/query",
+			"method": "POST",
+			"body": {
+				"sql": "DELETE FROM store_event WHERE ts < now() - interval '4 days';"
+			}
+		},
+		"delete-rows-from-tempest_observations": {
+			"type": "endpoint",
+			"endpoint": "${postgres-query-url-base}/query",
+			"method": "POST",
+			"body": {
+				"sql": "DELETE FROM tempest_observations WHERE timestamp < EXTRACT(EPOCH FROM (now() - interval '70 days'))::bigint;"
+			}
+		}
+	}
+}
