@@ -1,5 +1,5 @@
 {
-	"debug": false,
+	"debug": true,
 	"labels": [ "hue-response" ],
 	"conditions": {
 		"bath-light-is-now-off": " ! ${body.state.reachable} ",
@@ -25,6 +25,15 @@
 			"method": "DELETE",
 			"body": {
 				"tag": "up-bath.heater.light-on"
+			}
+		},
+		"query bath light on duration": {
+			"type": "endpoint",
+			"endpoint": "${postgres-query-url-base}/query",
+			"method": "POST",
+			"body": {
+				"sql": "SELECT EXTRACT(EPOCH FROM (now() - MAX(ts))) / 60.0 AS minutes_since_last_turn_on FROM store_event WHERE path='$.upstairs.sensors.hall-bathroom.light' and value='ON';",
+				"comment": "query for how long the bath light was on"
 			}
 		},
 		"set: bathroom light": { 

@@ -1,0 +1,39 @@
+{
+	"conditions": {
+		"check-event": "'${headers.calling_action}' === 'query bath light on duration'",
+        "duration-long-enough": " ${body.rows.0.minutes_since_last_turn_on} > 20.0 ",
+		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
+		"is-morning": " [new Date().getHours()].some(h => h >= 5 && h < 11) ",
+		"enabled": true
+	},
+	"_conditions": {
+		"check-event-type-day": "'${body.cron-event}' === 'Day'",
+		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-time": " /T09|T10/.test( '${body.cron-event-time}' ) "
+	},
+	"actions": {
+		"wip-tag": { 
+			"_": "WIP //TODO remove",
+			"type": "tag", 
+			"value": "activate tesla hvac",
+			"expire": 864000
+		},
+		"tesla-flash-lights": {
+			"type": "endpoint",
+			"endpoint": "${tesla-api-url-base}/flash-lights/0",
+			"method": "GET",
+			"headers": {
+				"usr": "${tesla-usr}"
+			}
+		},
+		"tesla-start-hvac": {
+			"type": "endpoint",
+			"endpoint": "${tesla-api-url-base}/set-climate/0/on",
+			"method": "GET",
+			"headers": {
+				"usr": "${tesla-usr}"
+			}
+		}
+	}
+}
