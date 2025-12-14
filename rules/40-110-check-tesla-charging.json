@@ -1,17 +1,22 @@
 {
 	"debug": true,
 	"conditions": {
-		"check-event-type-minute": "'${body.cron-event}' === 'Second'",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-tesla-near-veh-1-space": " ${Vehicles.Tesla_0.distance_to_home} < 0.005 ",
+		"enabled": true
+	},
+	"conditions_normal": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
 		"check-event-time": " /T19|T20|T21/.test( '${body.cron-event-time}' ) ",
 		"check-tesla-near-veh-1-space": " ${Vehicles.Tesla_0.distance_to_home} < 0.005 ",
 		"check-tesla-not-plugged-in": " '${Vehicles.Tesla_0.charge_state.charge_port_latch}' !== 'Engaged' ",
 		"enabled": true
 	},
-	"_conditions": {
+	"conditions_scratch": {
 		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
 		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
-		"check-event-type-second": "'${body.cron-event}' === 'Second'",
-		"check-event-time": " /T19|T20/T21/.test( '${body.cron-event-time}' ) "
+		"check-event-time": " /T19|T20|T21/.test( '${body.cron-event-time}' ) ",
+		"enabled": true
 	},
 	"actions": {
 		"_action-tag": { 
