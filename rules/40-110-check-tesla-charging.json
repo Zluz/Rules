@@ -1,8 +1,7 @@
 {
 	"debug": true,
 	"conditions": {
-		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
-		"check-event-time": " /T19|T20|T21/.test( '${body.cron-event-time}' ) ",
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
 		"check-tesla-near-veh-1-space": " ${Vehicles.Tesla_0.distance_to_home} < 0.005 ",
 		"enabled": true
 	},
@@ -37,7 +36,7 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Tesla is not plugged in",
-				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\nEvent <event_id>",
+				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\n\nEvent ${event_id}\nVM Host ${vm_host}",
 				"email_attachments": ""
 			}
 		}
