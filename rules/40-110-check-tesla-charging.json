@@ -35,9 +35,9 @@
 			"method": "POST",
 			"body": {
 				"action": "email",
-				"subject": "Tesla is not plugged in",
-				"body": "Tesla is detected in VEH-1 but port latch is not engaged.\nEvent <event_id>",
-				"attachments": {}
+				"email_subject": "Tesla is not plugged in",
+				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\nEvent <event_id>",
+				"email_attachments": {}
 			}
 		}
 	}
