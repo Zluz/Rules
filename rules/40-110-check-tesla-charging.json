@@ -23,8 +23,8 @@
 		"enabled": true
 	},
 	"actions": {
-		"_action-tag": { 
-			"type": "_tag", 
+		"action-tag": { 
+			"type": "tag", 
 			"value": "alert - tesla not plugged-in",
 			"expire": 3600
 		},
