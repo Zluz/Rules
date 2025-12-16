@@ -40,7 +40,7 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Tesla is not plugged in",
-				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\n\nEvent ${event_id}\nVM Host ${vm_host}\n\n'charge_port_latch' = ${Vehicles.Tesla_0.charge_state.charge_port_latch}\n'charging_state' = ${Vehicles.Tesla_0.charge_state.charging_state}\n'distance_to_home' = ${Vehicles.Tesla_0.distance_to_home}",
+				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\n\nEvent ${event_id}\nVM Host ${vm_host}\n\n charge_port_latch = ${Vehicles.Tesla_0.charge_state.charge_port_latch}\n charging_state = ${Vehicles.Tesla_0.charge_state.charging_state}\n distance_to_home = ${Vehicles.Tesla_0.distance_to_home} km",
 				"email_attachments": ""
 			}
 		}
