@@ -4,7 +4,7 @@
 		"check-event-type-hour": "'${body.cron-event}' === 'Hour'",
 		"check-event-time": " /T19|T20|T21|T22/.test( '${body.cron-event-time}' ) ",
 		"check-tesla-near-veh-1-space": " ${Vehicles.Tesla_0.distance_to_home} < 0.005 ",
-		"check-tesla-not-plugged-in": " /Complete|Charging/.test( '${Vehicles.Tesla_0.charge_state.charging_state}' ) ",
+		"check-tesla-not-plugged-in": " ! /Complete|Charging/.test( '${Vehicles.Tesla_0.charge_state.charging_state}' ) ",
 		"enabled": true
 	},
 	"conditions_normal": {
