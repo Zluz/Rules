@@ -40,7 +40,7 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Tesla is not plugged in",
-				"email_body": "Tesla is detected in VEH-1 but port latch is not engaged.\n\nEvent ${event_id}\nVM Host ${vm_host}\n\n charge_port_latch = ${Vehicles.Tesla_0.charge_state.charge_port_latch}\n charging_state = ${Vehicles.Tesla_0.charge_state.charging_state}\n distance_to_home = ${Vehicles.Tesla_0.distance_to_home} km\n charge_rate = ${Vehicles.Tesla_0.charge_state.charge_rate}",
+				"email_body": "Tesla is detected in VEH-1 but may not be connected to power.\n\nEvent ${event_id}\nVM Host ${vm_host}\n\n charging_state = ${Vehicles.Tesla_0.charge_state.charging_state}\n charge_port_latch = ${Vehicles.Tesla_0.charge_state.charge_port_latch}\n distance_to_home = ${Vehicles.Tesla_0.distance_to_home} km\n\n charge_rate = ${Vehicles.Tesla_0.charge_state.charge_rate}\n charger_actual_current = ${Vehicles.Tesla_0.charge_state.charger_actual_current}\n time_to_full_charge = ${Vehicles.Tesla_0.charge_state.time_to_full_charge} hours\n minutes_to_full_charge = ${Vehicles.Tesla_0.charge_state.minutes_to_full_charge} minutes\n\n battery_level = ${Vehicles.Tesla_0.charge_state.battery_level} %\n battery_range = ${Vehicles.Tesla_0.charge_state.battery_range}\n",
 				"email_attachments": ""
 			}
 		}
