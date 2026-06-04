@@ -4,7 +4,7 @@
         "duration-long-enough": " ${body.rows.0.minutes_since_last_turn_on} > 20.0 ",
 		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
 		"is-morning": " [new Date().getHours()].some(h => h >= 5 && h < 11) ",
-		"enabled": true
+		"enabled": false
 	},
 	"_conditions": {
 		"check-event-type-day": "'${body.cron-event}' === 'Day'",
