@@ -3,17 +3,17 @@
 		"pw-system": " '${body.instance}' "
 	},
 	"conditions": {
-		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) "
+		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) "
 	},
 	"_conditions": {
-		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
 		"check-pw-instance": " '${body.instance}' === 'BBW' ",
 		"check-event-type_": " '${body.event-type}' === 'alerts-pw' "
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "PW ${body.instance}",
+			"value": "PW ${body.instance} - ${body.endpoint}",
 			"expire": 6000
 		},
 		"add label: powerwall": {
