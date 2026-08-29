@@ -8,6 +8,8 @@
 		"grid-status-new-bool": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ",
 		"grid-status-new-value": " ${grid-status-new-bool} ? 'up' : 'down' ",
 
+		"grid-status-old-value": " '${Electric.grid.value}' ",
+
 		"grid-status-09": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
 
 		"grid-status-old": " '${Electric.grid.value}' ",
@@ -40,6 +42,7 @@
 			"add": {
 				"grid-status-new-bool": "${grid-status-new-bool}",
 				"grid-status-new-value": "${grid-status-new-value}",
+				"grid-status-old-value": "${grid-status-old-value}",
 				"grid-status-01": "${grid-status-01}",
 				"grid-status-02": "${grid-status-02}",
 				"grid-status-03": "${grid-status-03}",
