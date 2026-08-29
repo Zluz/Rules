@@ -29,7 +29,14 @@
 			"type": "set", 
 			"name": "Electric",
 			"path": "$.grid",
-			"value": "${grid-status-new}"
+			"value": "${grid-status-new}",
+			"add": {
+				"grid-status-04": "${grid-status-04}",
+				"grid-status-05": "${grid-status-05}",
+				"grid-status-06": "${grid-status-06}",
+				"grid-status-07": "${grid-status-07}",
+				"test-precip": "${precip_type_text}"
+			}
 		}
 	}
 }
