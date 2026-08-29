@@ -1,0 +1,24 @@
+{
+	"labels": [ "powerwall" ],
+    "vars": {
+		"status-9nk": " '${Electric.powerwall-9NK.grid-status}' ",
+		"status-bbw": " '${Electric.powerwall-BBW.grid-status}' ",
+		"grid-status-new": " ( '${Electric.powerwall-9NK.grid-status}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status}' === 'SystemGridConnected' ) ? 'up' : 'down' "
+	},
+	"conditions": {
+		"check-event-type": " '${body.endpoint}' === 'grid-status' ",
+        "changed-grid-status": " '${grid-status-new}' !== '${Electric.grid}' "
+	},
+	"_conditions": {
+		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) "
+	},
+	"actions": {
+		"action-set-var grid-status": { 
+			"type": "set", 
+			"name": "Electric",
+			"path": "$.grid",
+			"value": "${grid-status-new}"
+		}
+	}
+}
