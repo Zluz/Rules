@@ -1,0 +1,24 @@
+{
+	"debug": false,
+	"labels": [ "powerwall" ],
+	"conditions": {
+		"check-event-type": " '${body.endpoint}' === 'grid-status' ) "
+	},
+	"conditions_": {
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
+		"check-tempest-event": " '${body.serial_number}' === '${tempest-device-serial}' "
+	},
+	"actions": {
+		"action-set-var grid-status": { 
+			"type": "set", 
+			"name": "Electric",
+			"path": "$.powerwall-${body.instance}.grid-status",
+			"value": "${body.current.grid_status}",
+			"add": {
+				"grid_status": "${body.current.grid_status}",
+				"grid_services_active": "${body.current.grid_services_active}",
+				"changed-at": "${body.changed-at}"
+			}
+		}
+	}
+}
