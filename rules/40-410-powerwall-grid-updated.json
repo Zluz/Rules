@@ -1,12 +1,13 @@
 {
 	"labels": [ "powerwall" ],
 	"vars": {
-		"is-weekday": " ! ${Calendar.day-of-week.is-weekend} ",
-		"status-9nk": " '${Electric.powerwall-9NK.grid-status}' ",
-		"status-bbw": " '${Electric.powerwall-BBW.grid-status}' ",
+		"is-weekend": " ${Calendar.day-of-week.is-weekend} ",
+		"status-9nk": " '${Electric.powerwall-9NK.grid-status.value}' ",
+		"status-bbw": " '${Electric.powerwall-BBW.grid-status.value}' ",
 		"grid-status-old": " '${Electric.grid.value}' ",
 		"grid-status-new": " ( '${Electric.powerwall-9NK.grid-status}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
 		"grid-status-01": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
+		"grid-status-02": " ( ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
 		"_": "0"
 	},
 	"conditions": {
