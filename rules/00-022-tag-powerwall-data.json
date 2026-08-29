@@ -1,14 +1,14 @@
 {
-	"vars": {
+	"vars_": {
 		"pw-system": " '${body.instance}' "
 	},
 	"conditions": {
-		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
-		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) "
+		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) "
 	},
 	"_conditions": {
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
 		"check-pw-instance": " '${body.instance}' === 'BBW' ",
-		"check-event-type": " '${body.event-type}' === 'alerts-pw' "
+		"check-event-type_": " '${body.event-type}' === 'alerts-pw' "
 	},
 	"actions": {
 		"action-tag": { 
