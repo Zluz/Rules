@@ -25,7 +25,7 @@
 	},
 	"conditions": {
 		"check-event-type": " '${body.endpoint}' === 'grid-status' ",
-		"changed-grid-status": " '${grid-status-new-value}' !== '${Electric.grid.value}  xxx' "
+		"changed-grid-status": " '${grid-status-new-value}' !== '${Electric.grid.value}' "
 	},
 	"_conditions": {
 		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
