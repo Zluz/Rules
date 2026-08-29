@@ -4,7 +4,7 @@
 	},
 	"conditions": {
 		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
-		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) "
 	},
 	"_conditions": {
 		"check-pw-instance": " '${body.instance}' === 'BBW' ",
