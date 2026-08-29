@@ -7,7 +7,7 @@
 		"01 - action-tag": { 
 			"type": "tag", 
 			"value": "set - tesla data",
-			"expire": 86400
+			"expire": 14400
 		},
 		"add label: tesla-vehicle": {
 			"type": "add-label",
