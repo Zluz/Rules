@@ -4,6 +4,9 @@
 		"is-weekend": " ${Calendar.day-of-week.is-weekend} ",
 		"status-9nk": " '${Electric.powerwall-9NK.grid-status.value}' ",
 		"status-bbw": " '${Electric.powerwall-BBW.grid-status.value}' ",
+
+		"grid-status-09": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
+
 		"grid-status-old": " '${Electric.grid.value}' ",
 		"grid-status-new": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
 		"grid-status-01": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
@@ -40,6 +43,7 @@
 				"grid-status-06": "${grid-status-06_T}",
 				"grid-status-07": "${grid-status-07_F}",
 				"grid-status-08": "${grid-status-08}",
+				"grid-status-09": "${grid-status-09}",
 				"test-precip": "${precip_type_text}"
 			}
 		}
