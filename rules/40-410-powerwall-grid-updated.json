@@ -8,11 +8,13 @@
 		"grid-status-new": " ( '${Electric.powerwall-9NK.grid-status}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
 		"grid-status-01": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
 		"grid-status-02": " ( ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
+		"grid-status-03": " ( ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ) ",
+		"grid-status-04": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' && '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ",
 		"_": "0"
 	},
 	"conditions": {
 		"check-event-type": " '${body.endpoint}' === 'grid-status' ",
-		"changed-grid-status": " '${grid-status-new}' !== '${Electric.grid}' "
+		"changed-grid-status": " '${grid-status-new}' !== '${Electric.grid.value}' "
 	},
 	"_conditions": {
 		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
