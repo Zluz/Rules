@@ -2,7 +2,7 @@
 	"debug": false,
 	"labels": [ "powerwall" ],
 	"conditions": {
-		"check-event-type": " '${body.endpoint}' === 'grid-status' ) "
+		"check-event-type": " '${body.endpoint}' === 'grid-status' "
 	},
 	"conditions_": {
 		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
