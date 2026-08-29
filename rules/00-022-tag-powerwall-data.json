@@ -1,13 +1,20 @@
 {
+	"vars": {
+		"pw-system": " '${body.instance}' "
+	},
 	"conditions": {
+		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
+		"check-event-type": " [ 'alerts-pw', 'grid-status', 'api-sitemaster' ].includes( '${body.endpoint}' ) ",
+	},
+	"_conditions": {
 		"check-pw-instance": " '${body.instance}' === 'BBW' ",
 		"check-event-type": " '${body.event-type}' === 'alerts-pw' "
 	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
-			"value": "PW BBW",
-			"expire": 10
+			"value": "PW ${body.instance}",
+			"expire": 6000
 		},
 		"add label: powerwall": {
 			"type": "add-label",
