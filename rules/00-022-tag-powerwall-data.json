@@ -1,0 +1,21 @@
+{
+	"conditions": {
+		"check-pw-instance": " '${body.instance}' === 'BBW' ",
+		"check-event-type": " '${body.event-type}' === 'alerts-pw' "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "PW BBW",
+			"expire": 10
+		},
+		"add label: powerwall": {
+			"type": "add-label",
+			"label": "powerwall"
+		},
+		"filter: only powerwall": {
+			"type": "rule-filter",
+			"match": ".*powerwall.*"
+		}
+	}
+}
