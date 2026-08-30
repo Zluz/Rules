@@ -24,7 +24,8 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Grid Status: ${Electric.grid.value}",
-				"email_body": "Electric service to home is down.\nEvent: ${event_id}",
+				"email_body": "\nOverall grid status: ${Electric.grid.value}\nEvent ${event_id}\n\nPowerwall 9NK\n  grid_status = ${Electric.powerwall-9NK.grid-status.value}\n  time_remaining_hours = ${Electric.powerwall-9NK.pod.time_remaining_hours}\n  system-energy-percent = ${Electric.powerwall-9NK.pod.system-energy-percent}\n  backup_reserve_percent = ${Electric.powerwall-9NK.pod.backup_reserve_percent}\n  pw1.battery-energy-percent = ${Electric.powerwall-9NK.pod.pw1.battery-energy-percent}\n  pw2.battery-energy-percent = ${Electric.powerwall-9NK.pod.pw2.battery-energy-percent}\n  last status change = ${Electric.powerwall-9NK.grid-status.changed-at}\n\nPowerwall BBW\n  grid_status = ${Electric.powerwall-BBW.grid-status.value}\n  time_remaining_hours = ${Electric.powerwall-BBW.pod.time_remaining_hours}\n  system-energy-percent = ${Electric.powerwall-BBW.pod.system-energy-percent}\n  backup_reserve_percent = ${Electric.powerwall-BBW.pod.backup_reserve_percent}\n  pw1.battery-energy-percent = ${Electric.powerwall-BBW.pod.pw1.battery-energy-percent}\n  pw2.battery-energy-percent = ${Electric.powerwall-BBW.pod.pw2.battery-energy-percent}\n  last status change = ${Electric.powerwall-BBW.grid-status.changed-at}\n\n",
+				"email_body_": "Electric service to home is down.\nEvent: ${event_id}",
 				"email_attachments": ""
 			}
 		}
