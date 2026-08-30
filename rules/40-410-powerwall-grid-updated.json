@@ -34,7 +34,7 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Grid Status: ${grid-status-new-value}",
-				"email_body": "Electric service to home has changed.\nGrid is now: ${grid-status-new-value}\n\nPowerwall system ${body.instance} reported this change at ${body.changed-at}. \n \n grid_status values \n Powerwall 9NK: x<status-9nk> \n Powerwall BBW: x<status-bbw>",
+				"email_body": "Electric service to home has changed.\nGrid is now: ${grid-status-new-value}\n\nPowerwall system ${body.instance} reported this change at ${body.changed-at}. \n \n API grid_status values \n Powerwall 9NK: ${status-9nk} \n Powerwall BBW: ${status-bbw}",
 				"email_attachments": ""
 			}
 		}
