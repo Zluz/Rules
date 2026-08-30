@@ -1,7 +1,6 @@
 {
 	"labels": [ "powerwall" ],
 	"vars": {
-		"is-weekend": " ${Calendar.day-of-week.is-weekend} ",
 		"status-9nk": " '${Electric.powerwall-9NK.grid-status.value}' ",
 		"status-bbw": " '${Electric.powerwall-BBW.grid-status.value}' ",
 
@@ -10,19 +9,6 @@
 
 		"grid-status-old-value": " '${Electric.grid.value}' ",
 
-		"grid-status-09": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
-
-		"grid-status-old": " '${Electric.grid.value}' ",
-		"grid-status-new": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
-		"grid-status-01": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ? 'up' : 'down' ",
-		"grid-status-02": " ( ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ) ? 'up' : 'down' ",
-		"grid-status-03": " ( ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' ) && ( '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ) ",
-		"grid-status-04_T": " ( '${Electric.powerwall-9NK.grid-status.value}' === 'SystemGridConnected' && '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ",
-		"grid-status-05_F": " ( '${Electric.powerwall-9NK.grid-status.value}' === '${Electric.powerwall-BBW.grid-status.value}' === 'SystemGridConnected' ) ",
-		"grid-status-06_T": " ( 'test' === 'test' ) ? 'true-result' : 'false-result' ",
-		"grid-status-07_F": " ( 'test' === 'test' === 'test' ) ? 'true-result' : 'false-result' ",
-		"grid-status-08": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ",
-		"precip_type_text": " ( 1 == 2 ) ? 'Hail' : ( 1 == 1 ) ? 'Rain' : 'None'",
 		"_": "0"
 	},
 	"conditions": {
@@ -43,16 +29,8 @@
 				"grid-status-new-bool": "${grid-status-new-bool}",
 				"grid-status-new-value": "${grid-status-new-value}",
 				"grid-status-old-value": "${grid-status-old-value}",
-				"grid-status-01": "${grid-status-01}",
-				"grid-status-02": "${grid-status-02}",
-				"grid-status-03": "${grid-status-03}",
-				"grid-status-04": "${grid-status-04_T}",
-				"grid-status-05": "${grid-status-05_F}",
-				"grid-status-06": "${grid-status-06_T}",
-				"grid-status-07": "${grid-status-07_F}",
-				"grid-status-08": "${grid-status-08}",
-				"grid-status-09": "${grid-status-09}",
-				"test-precip": "${precip_type_text}"
+				"last-system-changed": "${body.instance}",
+				"last-system-last-status": "${body.previous.grid_status}"
 			}
 		}
 	}
