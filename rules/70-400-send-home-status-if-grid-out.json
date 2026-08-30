@@ -8,8 +8,11 @@
 	"conditions": {
 		"grid out": " '${Electric.grid.value}' !== 'up' ",
 		"check-event-type-minute": " '${body.cron-event}' === 'Minute' ",
-		"check-20-minute-interval": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) ",
+		"10-minute-interval": " ${minute-10} ",
 		"enabled": true
+	},
+	"conditions_": {
+		"20-minute-interval": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) "
 	},
 	"actions": {
 		"action-tag": { 
