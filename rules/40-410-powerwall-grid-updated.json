@@ -23,11 +23,8 @@
 			"path": "$.grid",
 			"value": "${grid-status-new-value}",
 			"add": {
-				"grid-status-new-bool": "${grid-status-new-bool}",
-				"grid-status-new-value": "${grid-status-new-value}",
-				"grid-status-old-value": "${grid-status-old-value}",
-				"last-system-changed": "${body.instance}",
-				"last-system-last-status": "${body.previous.grid_status}"
+				"system-changed": "${body.instance}",
+				"system-previous-grid-status": "${body.previous.grid_status}"
 			}
 		}
 	}
