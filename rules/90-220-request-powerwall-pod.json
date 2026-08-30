@@ -7,12 +7,18 @@
 		"call-9nk-pod": {
 			"type": "endpoint",
 			"endpoint": "${powerwall-9nk-pypw-url-base}/pod",
-			"method": "GET"
+			"method": "GET",
+			"headers": {
+				"powerwall-system": "9NK"
+			}
 		},
 		"call-bbw-pod": {
 			"type": "endpoint",
 			"endpoint": "${powerwall-bbw-pypw-url-base}/pod",
-			"method": "GET"
+			"method": "GET",
+			"headers": {
+				"powerwall-system": "BBW"
+			}
 		}
 	}
 }
