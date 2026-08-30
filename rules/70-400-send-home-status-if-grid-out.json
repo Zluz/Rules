@@ -1,7 +1,7 @@
 {
 	"vars": {
-		"minute-20": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) ",
-		"minute-10": " '${body.cron-event-time}'.substring(15,16) === '0' ",
+		"minute-20": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,15) ) ",
+		"minute-10": " '${body.cron-event-time}'.charAt(15) === '0' ",
 		"soe-9nk": " ${Electric.powerwall-9NK.pod.system-energy-percent} ",
 		"soe-bbw": " ${Electric.powerwall-BBW.pod.system-energy-percent} "
 	},
