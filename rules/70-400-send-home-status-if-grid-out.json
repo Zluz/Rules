@@ -24,7 +24,7 @@
 			"body": {
 				"action": "email",
 				"email_subject": "Grid Status: ${Electric.grid.value}",
-				"email_body": "Electric service to home is down.",
+				"email_body": "Electric service to home is down.\nEvent: ${event_id}",
 				"email_attachments": ""
 			}
 		}
