@@ -33,7 +33,7 @@
 			"method": "POST",
 			"body": {
 				"action": "email",
-				"email_subject": "test-subject",
+				"email_subject": "Grid Status: ${grid-status-new-value}",
 				"email_body": "Electric service to home has changed.\nGrid is now: ${grid-status-new-value}\n\nPowerwall system ${body.instance} reported this change at ${body.changed-at}.",
 				"email_attachments": ""
 			}
