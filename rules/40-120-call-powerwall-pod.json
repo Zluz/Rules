@@ -1,0 +1,12 @@
+{
+	"conditions": {
+		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-10-minute-interval": "'${body.cron-event-time}'.substring(15,16) === '0'"
+	},
+	"actions": {
+		"add label: request-powerwall-pod": {
+			"type": "add-label",
+			"label": "request-powerwall-pod"
+		}
+	}
+}
