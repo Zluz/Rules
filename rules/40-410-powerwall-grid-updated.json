@@ -3,12 +3,9 @@
 	"vars": {
 		"status-9nk": " '${Electric.powerwall-9NK.grid-status.value}' ",
 		"status-bbw": " '${Electric.powerwall-BBW.grid-status.value}' ",
-
 		"grid-status-new-bool": " ( ( '${status-9nk}' === 'SystemGridConnected' ) && ( '${status-bbw}' === 'SystemGridConnected' ) ) ",
 		"grid-status-new-value": " ${grid-status-new-bool} ? 'up' : 'down' ",
-
 		"grid-status-old-value": " '${Electric.grid.value}' ",
-
 		"_": "0"
 	},
 	"conditions": {
@@ -24,7 +21,7 @@
 			"type": "set", 
 			"name": "Electric",
 			"path": "$.grid",
-			"value": "${grid-status-new}",
+			"value": "${grid-status-new-value}",
 			"add": {
 				"grid-status-new-bool": "${grid-status-new-bool}",
 				"grid-status-new-value": "${grid-status-new-value}",
