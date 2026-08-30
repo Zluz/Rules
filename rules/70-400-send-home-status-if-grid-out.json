@@ -6,9 +6,10 @@
 		"soe-bbw": " ${Electric.powerwall-BBW.pod.system-energy-percent} "
 	},
 	"conditions": {
-		"grid out": " '${Electric.grid.value}' !== 'up' ",
 		"check-event-type-minute": " '${body.cron-event}' === 'Minute' ",
-		"10-minute-interval": " ${minute-10} ",
+		"20-minute-interval": " ${minute-20} ",
+		"10-minute-interval": " ${minute-10} || ${soe-9nk} < 30.0 || ${soe-bbw} < 30.0 ",
+		"grid out": " '${Electric.grid.value}' !== 'up' ",
 		"enabled": true
 	},
 	"conditions_": {
