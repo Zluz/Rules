@@ -1,11 +1,11 @@
 {
 	"conditions": {
-		"grid out": "'${Electric.grid.value}' !== 'up'",
 		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
 		"check-20-minute-interval": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) ",
 		"enabled": true
 	},
 	"_conditions": {
+		"grid out": " '${Electric.grid.value}' !== 'up' ",
 		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
 		"away-from-home": " ${Vehicles.Tesla_0.distance_to_home} > 1.0 ",
         "check-event-time": " /T02|T10/.test( '${body.cron-event-time}' ) ",
@@ -18,7 +18,7 @@
 			"method": "POST",
 			"body": {
 				"action": "email",
-				"email_subject": "Grid Status: ${grid-status-new-value}",
+				"email_subject": "Grid Status: ${Electric.grid.value}",
 				"email_body": "Electric service to home is down.",
 				"email_attachments": ""
 			}
