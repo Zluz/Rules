@@ -26,6 +26,17 @@
 				"system-changed": "${body.instance}",
 				"system-previous-grid-status": "${body.previous.grid_status}"
 			}
-		}
+		},
+		"post-rule email action": {
+			"type": "endpoint",
+			"endpoint": "${url_base_post_rule_actions}",
+			"method": "POST",
+			"body": {
+				"action": "email",
+				"email_subject": "Grid Status: ${grid-status-new-value}",
+				"email_body": "Electric service to home has changed.\nGrid is now: ${grid-status-new-value}\n\nPowerwall system ${body.instance} reported this change at ${body.changed-at}.\n\ngrid_status values\n  Powerwall 9NK (since ${Electric.powerwall-9NK.grid-status.changed-at}): ${Electric.powerwall-9NK.grid-status.value}\n  Powerwall BBW (since ${Electric.powerwall-BBW.grid-status.changed-at}): ${Electric.powerwall-BBW.grid-status.value}",
+				"email_attachments": ""
+			}
+		}	
 	}
 }
