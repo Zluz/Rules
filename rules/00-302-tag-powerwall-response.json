@@ -8,12 +8,6 @@
 		"check-event-type-suffix": " '${headers.calling_action}'.includes('-pod') ",
 		"check-action-endpoint": " '${headers.calling_action_endpoint}'.includes('/pod') "
 	},
-	"conditions_": {
-		"check-event-type-prefix": " '${headers.calling_action}'.includes('call-') ",
-		"check-event-type-suffix": " '${headers.calling_action}'.includes('-pod') ",
-		"check-10-minute-interval": "'${body.cron-event-time}'.substring(15,16) === '0'",
-		"check-action-endpoint": " '${headers.calling_action_endpoint}'.includes('/pod') "
-	},
 	"actions": {
 		"action-tag": { 
 			"type": "tag", 
