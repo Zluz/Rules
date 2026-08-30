@@ -4,21 +4,15 @@
 		"enabled": true
 	},
 	"actions": {
-		"call-9nk-pod": {
+		"call-9NK-pod": {
 			"type": "endpoint",
 			"endpoint": "${powerwall-9nk-pypw-url-base}/pod",
-			"method": "GET",
-			"headers": {
-				"powerwall-system": "9NK"
-			}
+			"method": "GET"
 		},
-		"call-bbw-pod": {
+		"call-BBW-pod": {
 			"type": "endpoint",
 			"endpoint": "${powerwall-bbw-pypw-url-base}/pod",
-			"method": "GET",
-			"headers": {
-				"powerwall-system": "BBW"
-			}
+			"method": "GET"
 		}
 	}
 }
