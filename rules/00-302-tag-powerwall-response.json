@@ -1,6 +1,6 @@
 {
 	"vars": {
-		"system": " '${headers.calling_action}'.substring(6,8) ",
+		"system": " '${headers.calling_action}'.substring(5,8) ",
 		"_": "0"
 	},
 	"conditions": {
