@@ -1,6 +1,6 @@
 {
 	"conditions": {
-		"check-event-type-minute": "'${body.cron-event}' === 'Minute'",
+		"check-event-type-minute": " '${body.cron-event}' === 'Minute' ",
 		"check-20-minute-interval": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) ",
 		"enabled": true
 	},
@@ -12,6 +12,11 @@
 		"check-10-minute-interval": "'${body.cron-event-time}'.split('T')[1]?.split(':')[1]"
 	},
 	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "cron - Grid Out status alert",
+			"expire": 3600
+		},
 		"post-rule email action": {
 			"type": "endpoint",
 			"endpoint": "${url_base_post_rule_actions}",
