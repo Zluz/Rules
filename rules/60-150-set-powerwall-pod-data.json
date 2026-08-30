@@ -29,6 +29,6 @@
 				"PW2_pinv_grid_state": "${body.PW2_pinv_grid_state}",
 				"PW2_OpSeqState": "${body.PW2_OpSeqState}"
 			}
-		},
+		}
 	}
 }
