@@ -1,0 +1,18 @@
+{
+	"labels": [ "request-powerwall-pod" ],
+	"conditions": {
+		"enabled": true
+	},
+	"actions": {
+		"call-9nk-pod": {
+			"type": "endpoint",
+			"endpoint": "${powerwall-9nk-pypw-url-base}/pod",
+			"method": "GET"
+		},
+		"call-bbw-pod": {
+			"type": "endpoint",
+			"endpoint": "${powerwall-bbw-pypw-url-base}/pod",
+			"method": "GET"
+		}
+	}
+}
