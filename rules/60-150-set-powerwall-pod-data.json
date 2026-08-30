@@ -17,17 +17,7 @@
 				"nominal_energy_remaining": "${body.nominal_energy_remaining}",
 				"nominal_full_pack_energy": "${body.nominal_full_pack_energy}",
 				"time_remaining_hours": "${body.time_remaining_hours}",
-				"backup_reserve_percent": "${body.backup_reserve_percent}",
-				"PW1_POD_nom_energy_remaining": "${body.PW1_POD_nom_energy_remaining}",
-				"PW1_POD_nom_full_pack_energy": "${body.PW1_POD_nom_full_pack_energy}",
-				"PW1_pinv_state": "${body.PW1_pinv_state}",
-				"PW1_pinv_grid_state": "${body.PW1_pinv_grid_state}",
-				"PW1_OpSeqState": "${body.PW1_OpSeqState}",
-				"PW2_POD_nom_energy_remaining": "${body.PW2_POD_nom_energy_remaining}",
-				"PW2_POD_nom_full_pack_energy": "${body.PW2_POD_nom_full_pack_energy}",
-				"PW2_pinv_state": "${body.PW2_pinv_state}",
-				"PW2_pinv_grid_state": "${body.PW2_pinv_grid_state}",
-				"PW2_OpSeqState": "${body.PW2_OpSeqState}"
+				"backup_reserve_percent": "${body.backup_reserve_percent}"
 			}
 		},
 		"set: Electric.powerwall-(system).pod.pw1": { 
