@@ -2,7 +2,10 @@
 	"debug": false,
 	"labels": [ "powerwall-response" ],
 	"vars": {
-		"system": " '${headers.calling_action}'.substring(5,8) "
+		"system": " '${headers.calling_action}'.substring(5,8) ",
+		"system-energy-percent": " ${body.nominal_energy_remaining} * 100.0 / ${body.nominal_full_pack_energy} ",
+		"pw1-energy-percent": " ${body.PW1_POD_nom_energy_remaining} * 100.0 / ${body.PW1_POD_nom_full_pack_energy} ",
+		"pw2-energy-percent": " ${body.PW2_POD_nom_energy_remaining} * 100.0 / ${body.PW2_POD_nom_full_pack_energy} "
 	},
 	"conditions": {
 		"enabled": "true"
@@ -17,7 +20,8 @@
 				"nominal_energy_remaining": "${body.nominal_energy_remaining}",
 				"nominal_full_pack_energy": "${body.nominal_full_pack_energy}",
 				"time_remaining_hours": "${body.time_remaining_hours}",
-				"backup_reserve_percent": "${body.backup_reserve_percent}"
+				"backup_reserve_percent": "${body.backup_reserve_percent}",
+				"system-energy-percent": "${system-energy-percent}"
 			}
 		},
 		"set: Electric.powerwall-(system).pod.pw1": { 
@@ -30,7 +34,8 @@
 				"POD_nom_full_pack_energy": "${body.PW1_POD_nom_full_pack_energy}",
 				"pinv_state": "${body.PW1_pinv_state}",
 				"pinv_grid_state": "${body.PW1_pinv_grid_state}",
-				"OpSeqState": "${body.PW1_OpSeqState}"
+				"OpSeqState": "${body.PW1_OpSeqState}",
+				"battery-energy-percent": "${pw1-energy-percent}"
 			}
 		},
 		"set: Electric.powerwall-(system).pod.pw2": { 
@@ -43,7 +48,8 @@
 				"POD_nom_full_pack_energy": "${body.PW2_POD_nom_full_pack_energy}",
 				"pinv_state": "${body.PW2_pinv_state}",
 				"pinv_grid_state": "${body.PW2_pinv_grid_state}",
-				"OpSeqState": "${body.PW2_OpSeqState}"
+				"OpSeqState": "${body.PW2_OpSeqState}",
+				"battery-energy-percent": "${pw2-energy-percent}"
 			}
 		}
 	}
