@@ -1,0 +1,18 @@
+{
+	"conditions": {
+		"check-event-type-prefix": " '${headers.calling_action}'.includes('call-') ",
+		"check-event-type-suffix": " '${headers.calling_action}'.includes('-pod') ",
+		"check-action-endpoint": " '${headers.calling_action_endpoint}'.includes('/pod') "
+	},
+	"actions": {
+		"action-tag": { 
+			"type": "tag", 
+			"value": "PW ${body.instance} - response",
+			"expire": 120
+		},
+		"add label: powerwall-response": {
+			"type": "add-label",
+			"label": "powerwall-response"
+		}
+	}
+}
