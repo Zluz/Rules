@@ -1,4 +1,5 @@
 {
+	"labels": [ "powerwall" ],
 	"vars": {
 		"minute-20": " [ '00','20','40' ].includes( '${body.cron-event-time}'.substring(14,16) ) ",
 		"minute-10": " '${body.cron-event-time}'.charAt(15) === '0' ",
