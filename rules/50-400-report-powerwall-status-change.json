@@ -1,0 +1,21 @@
+{
+	"labels": [ "powerwall" ],
+	"conditions": {
+		"check-pw-instancee": " [ '9NK', 'BBW' ].includes( '${body.instance}' ) ",
+		"monitored-endpoint": " '${body.endpoint}' === 'control-mode' ",
+		"enabled": true
+	},
+	"actions": {
+		"post-rule email action": {
+			"type": "endpoint",
+			"endpoint": "${url_base_post_rule_actions}",
+			"method": "POST",
+			"body": {
+				"action": "email",
+				"email_subject": "Powerwall mode change: ${Electric.grid.value}",
+				"email_body": "Powerwall mode change\nEvent: ${event_id}\nEvent-type: ${body.event-type}\nEvent: ${event_id}\nGrid status: ${Electric.grid.value}\n\nCurrent value:\n${body.current}",
+				"email_attachments": ""
+			}
+		}
+	}
+}
