@@ -12,8 +12,8 @@
 			"method": "POST",
 			"body": {
 				"action": "email",
-				"email_subject": "Powerwall mode change",
-				"email_body": "Powerwall mode change\nEvent: ${event_id}\nEvent-type: ${body.event-type}\nEvent: ${event_id}\nGrid status: ${Electric.grid.value}\n\nCurrent value\n    (raw): ${body.current}\n    mode: ${body.current.mode}\n    error: ${body.current.error}",
+				"email_subject": "Powerwall ${body.instance} mode change",
+				"email_body": "Powerwall mode change\nSystem: ${body.instance}\nEvent-type: ${body.event-type}\nEvent: ${event_id}\nGrid status: ${Electric.grid.value}\n\nCurrent value\n    (raw): ${body.current}\n    mode: ${body.current.mode}\n    error: ${body.current.error}",
 				"email_attachments": ""
 			}
 		}
